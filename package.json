@@ -1,0 +1,19 @@
+{
+  "name": "@searchfe/utils",
+  "version": "1.0.0",
+  "description": "A javascript tools lib for the frontend",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/searchfe/utils.git"
+  },
+  "author": "pearl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/searchfe/utils/issues"
+  },
+  "homepage": "https://github.com/searchfe/utils#readme"
+}
