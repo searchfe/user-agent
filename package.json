@@ -1,5 +1,5 @@
 {
-  "name": "@searchfe/utils",
+  "name": "@searchfe/user-agent",
   "version": "1.0.0",
   "description": "A javascript tools lib for the frontend",
   "main": "src/index.js",
