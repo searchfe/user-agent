@@ -16,5 +16,9 @@ define(['src/index'], function (UA) {
         it('should detect UC browser', function () {
             expect(UA.use(ucAndoird).isUC()).to.equal(true);
         });
+        it('should detect iOS version', function () {
+            expect(UA.use(qqIOS).isIOS()).to.equal(true);
+            expect(UA.use(qqIOS).iOSVersion()).to.deep.equal([10, 3]);
+        });
     });
 });
