@@ -1,16 +1,36 @@
-define(function() {
+define(function () {
+    var traits = {
+        // OS
+        isAndroid: /android/i,
+        isIOS: /(iPhone|iPod|iPad)/,
+        isWinPhone: /Windows Phone ([\d.]+)/,
 
-    function Browser () {
-        this._name = '';
+        // Browser
+        isBaiduBox: /baiduboxapp/,
+        isBaiduBoxLite: /lite baiduboxapp/,
+        isQQ: /QQBrowser/,
+        isBaiduBrowser: /baidubrowser/,
+        isSearchCraft: /SearchCraft/i,
+        isUC: /UCBrowser/,
+        isChromeDesktop: /Chrome\//,
+        isChromeMobile: /Chrome\/(\S*) Mobile/,
+        isSogouMobile: /SogouMobileBrowser/,
+        isMiuiBrowser: /MiuiBrowser\/(\S*)/
     };
 
-    Browser.prototype._getBrowserName = function (ua) {
-        var ua = ua || navigator.userAgent;
-        if (ua.indexOf('QQBrowser') > -1) {
-            this._name = 'qq';
-        }
-    }
+    function factory (userAgentString) {
+        var ua = {
+            use: factory
+        };
 
-    return Browser;
+        Object.keys(traits).forEach(function (key) {
+            var regexp = traits[key];
+            ua[key] = function () {
+                return regexp.test(userAgentString);
+            };
+        });
+        return ua;
+    };
 
+    return factory(navigator.userAgent);
 });
