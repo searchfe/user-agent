@@ -18,7 +18,7 @@ define(function () {
                 return match ? [Number(match[1]), Number(match[2])] : [];
             },
             appleWebkitVersion: function () {
-                var match = ua.match(/ applewebkit\/([0-9\.]+)/i);
+                var match = ua.match(/ applewebkit\/([0-9.]+)/i);
                 return match ? match[1].split('.').map(parseFloat) : [];
             },
 
