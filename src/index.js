@@ -1,6 +1,6 @@
 define(function () {
     function factory (ua) {
-        return {
+        var mod = {
             // OS
             isAndroid: function () {
                 return /android/i.test(ua);
@@ -16,6 +16,10 @@ define(function () {
             iOSVersion: function () {
                 var match = /OS (\d+)_(\d+)/.exec(ua);
                 return match ? [Number(match[1]), Number(match[2])] : [];
+            },
+            appleWebkitVersion: function () {
+                var match = ua.match(/ applewebkit\/([0-9\.]+)/i);
+                return match ? match[1].split('.').map(parseFloat) : [];
             },
 
             // Browser
@@ -50,9 +54,20 @@ define(function () {
                 return /MiuiBrowser\/(\S*)/.test(ua);
             },
 
+            // kernel
+            isWKWebview: function () {
+                var webkitVersion = mod.appleWebkitVersion();
+                return mod.isIOS() && webkitVersion[0] && webkitVersion[0] > 600;
+            },
+            isUIWebview: function () {
+                var webkitVersion = mod.appleWebkitVersion();
+                return mod.isIOS() && webkitVersion[0] && webkitVersion[0] <= 600;
+            },
+
             // functionality
             use: factory
         };
+        return mod;
     };
 
     return factory(navigator.userAgent);
