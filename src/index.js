@@ -21,6 +21,10 @@ define(function () {
                 var match = ua.match(/ applewebkit\/([0-9.]+)/i);
                 return match ? match[1].split('.').map(parseFloat) : [];
             },
+            baiduBoxVersion: function () {
+                var match = ua.match(/ baiduboxapp\/([0-9.]+)/i);
+                return match ? match[1].split('.').map(parseFloat) : [];
+            },
 
             // Browser
             isBaiduBox: function () {
