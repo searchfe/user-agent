@@ -14,7 +14,7 @@ apmjs install --save @searchfe/user-agent
 
 ```javascript
 var ua = require('@searchfe/user-agent')
-if (ua.isISO()) {
+if (ua.isIOS()) {
     var version = ua.iOSVersion()
     console.log('main version': version[0])
     console.log('sub  version': version[1])
