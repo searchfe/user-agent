@@ -4,6 +4,8 @@ define(['src/index'], function (UA) {
     var ucAndroid = 'Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; ZUK Z2121 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 UCBrowser/11.6.8.952 Mobile Safari/537.36';
     var safariIOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1';
     var ucIOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X; zh-CN) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/16A5288q UCBrowser/12.0.3.1077 Mobile  AliApp(TUnionSDK/0.1.20.3)';
+    var baiduIOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13F69 baiduboxapp/0_8.0.0.9_enohpi_6311_046/2.3.9_2C2%255enohPi/1000306f/C4FF069AC425606E29ACA3E490065B7C5DFD70645OCEANNARPH/1';
+    var baiduAndroid = 'Mozilla/5.0 (Linux; U; Android 4.1.1; zh-cn; SCH-N719 Build/JRO03C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 baiduboxapp/6.3 (Baidu; P1 4.1.1)'
 
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -21,6 +23,12 @@ define(['src/index'], function (UA) {
         it('should detect iOS version', function () {
             expect(UA.use(qqIOS).isIOS()).to.equal(true);
             expect(UA.use(qqIOS).iOSVersion()).to.deep.equal([10, 3]);
+        });
+        it('should detect BaiduBox version', function () {
+            expect(UA.use(baiduIOS).isBaiduBox()).to.equal(true);
+            expect(UA.use(baiduAndroid).isBaiduBox()).to.equal(true);
+            expect(UA.use(baiduIOS).baiduBoxVersion()).to.deep.equal([9, 0, 0, 8]);
+            expect(UA.use(baiduAndroid).baiduBoxVersion()).to.deep.equal([6, 3]);
         });
         it('should detect AppleWebkit version', function () {
             expect(UA.use(safariIOS).appleWebkitVersion()).to.deep.equal([603, 1, 30]);
