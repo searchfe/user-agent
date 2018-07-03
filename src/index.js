@@ -34,8 +34,14 @@ define(function () {
             isBaiduBoxLite: function () {
                 return /lite baiduboxapp/.test(ua);
             },
-            isQQ: function () {
-                return /QQBrowser/.test(ua);
+            isQQApp: function () {
+                return /QQ\/[0-9]+/.test(ua);
+            },
+            isWeixinApp: function () {
+                return /MicroMessenger/.test(ua);
+            },
+            isQQBrowser: function () {
+                return /QQBrowser/.test(ua) && !(/QQ\//.test(ua) || /MicroMessenger/.test(ua));
             },
             isBaiduBrowser: function () {
                 return /baidubrowser/.test(ua);
