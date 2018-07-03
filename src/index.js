@@ -34,12 +34,19 @@ define(function () {
             isBaiduBoxLite: function () {
                 return /lite baiduboxapp/.test(ua);
             },
+            // isQQ 会判断是否 QQ 浏览器
+            // 但 Android 平台的手机内置 QQ 的 UA 没有 QQBrowser 字段
+            // 所以请使用 isQQApp || isWeixinApp || isQQBrowser 代替此接口
+            isQQ: function () {
+                return /QQBrowser/.test(ua);
+            },
             isQQApp: function () {
                 return /QQ\/[0-9]+/.test(ua);
             },
             isWeixinApp: function () {
                 return /MicroMessenger/.test(ua);
             },
+            // isQQBrowser 会判断是否 QQ 浏览器 但不包括 QQ 微信内置
             isQQBrowser: function () {
                 return /QQBrowser/.test(ua) && !(/QQ\//.test(ua) || /MicroMessenger/.test(ua));
             },

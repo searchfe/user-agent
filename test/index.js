@@ -13,10 +13,12 @@ define(['src/index'], function (UA) {
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
-            expect(UA.isQQApp()).to.equal(false);
+            expect(UA.isQQ()).to.equal(false);
             expect(UA.isUC()).to.equal(false);
         });
         it('should detect QQ browser', function () {
+            expect(UA.use(qqAndroid).isQQ()).to.equal(true);
+            expect(UA.use(qqIOS).isQQ()).to.equal(true);
             expect(UA.use(qqAndroid).isQQBrowser()).to.equal(true);
             expect(UA.use(qqIOS).isQQBrowser()).to.equal(true);
         });
