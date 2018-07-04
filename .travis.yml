@@ -11,8 +11,7 @@ cache:
   directories:
     - "node_modules"
 script:
-  - apm install
   - npm run lint
-  - npm run ci
+  - npm run coveralls
 before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
