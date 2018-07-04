@@ -68,19 +68,4 @@ define(['src/index'], function (UA) {
             expect(UA.use(searchCraft).secrVersion()).to.deep.equal([2,6,0]);
         });
     });
-
-    describe('version compare', function () {
-        it('version1 should equal to version2', function () {
-            expect(UA.use().versionCompare([2,6,0], [2,6,0])).to.equal(0);
-            expect(UA.use().versionCompare([2,6], [2,6,0])).to.equal(0);
-        });
-        it('version1 should large than version2', function () {
-            expect(UA.use().versionCompare([2,6,1], [2,6,0])).to.equal(1);
-            expect(UA.use().versionCompare([2,6,1], [2,6,0,5])).to.equal(1);
-        });
-        it('version1 should small than version2', function () {
-            expect(UA.use().versionCompare([2,6,0,5], [2,6,2])).to.equal(-1);
-            expect(UA.use().versionCompare([2,6], [2,6,2])).to.equal(-1);
-        });
-    });
 });
