@@ -23,7 +23,7 @@ define(function () {
             },
             baiduBoxVersion: function () {
                 var match = ua.match(/ baiduboxapp\/([0-9]+_)?([0-9.]+)/i);
-                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.').reverse() : match[2].split('.')
+                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.').reverse() : match[2].split('.');
                 return version ? version.map(parseFloat) : [];
             },
 
