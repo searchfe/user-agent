@@ -26,6 +26,12 @@ define(function () {
                 var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.').reverse() : match[2].split('.');
                 return version ? version.map(parseFloat) : [];
             },
+            // 简单搜索版本号
+            secrVersion: function () {
+                var match = ua.match(/ SearchCraft\/([0-9]+_)?([0-9.]+)/i);
+                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.') : match[2].split('.');
+                return version ? version.map(parseFloat) : [];
+            },
 
             // Browser
             isBaiduBox: function () {
@@ -86,7 +92,7 @@ define(function () {
             use: factory
         };
         return mod;
-    };
+    }
 
     return factory(navigator.userAgent);
 });
