@@ -23,8 +23,53 @@ define(function () {
             },
             baiduBoxVersion: function () {
                 var match = ua.match(/ baiduboxapp\/([0-9]+_)?([0-9.]+)/i);
-                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.').reverse() : match[2].split('.')
+                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.').reverse() : match[2].split('.');
                 return version ? version.map(parseFloat) : [];
+            },
+            // 简单搜索版本号
+            secrVersion: function () {
+                var match = ua.match(/ SearchCraft\/([0-9]+_)?([0-9.]+)/i);
+                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.') : match[2].split('.');
+                return version ? version.map(parseFloat) : [];
+            },
+
+            /**
+             * [versionCompare 版本号对比]
+             *
+             * @param  {Array}   version1 版本号的数组形式
+             * @param  {Array}   version2 版本号的数组形式
+             * @return {integer}          1 表示 大于，0 表示 等于，-1 表示 小于
+             */
+            versionCompare: function (version1, version2) {
+                var len1 = version1.length;
+                var len2 = version2.length;
+
+                if (!(version1 instanceof Array) || !(version2 instanceof Array)) {
+                    return 'wrong version';
+                }
+
+                for (var i = 0; i < Math.min(len1, len2); i++) {
+                    if (version1[i] > version2[i]) {
+                        return 1;
+                    }
+                    else if (version1[i] < version2[i]) {
+                        return -1;
+                    }
+                }
+                if (len1 === len2) {
+                    return 0;
+                }
+                var tmp = len1 > len2 ? 1 : -1;
+                var ary = len1 > len2 ? version1 : version2;
+                for (var j = i; j < Math.max(len1, len2); j++) {
+                    if (ary[j] > 0) {
+                        return tmp;
+                    }
+                    else if (ary[j] === 0) {
+                        return 0;
+                    }
+
+                }
             },
 
             // Browser
@@ -86,7 +131,7 @@ define(function () {
             use: factory
         };
         return mod;
-    };
+    }
 
     return factory(navigator.userAgent);
 });

@@ -8,7 +8,7 @@ define(['src/index'], function (UA) {
     var baiduAndroid = 'Mozilla/5.0 (Linux; U; Android 4.1.1; zh-cn; SCH-N719 Build/JRO03C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 baiduboxapp/6.3 (Baidu; P1 4.1.1)';
     var qqApp = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36 V1_AND_SQ_7.6.8_872_YYB_D QQ/7.6.8.3615 NetType/WIFI WebP/0.4.1 Pixel/1080';
     var weixinApp = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044109 Mobile Safari/537.36 MicroMessenger/6.6.7.1320(0x26060739) NetType/WIFI Language/en';
-
+    var searchCraft = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E216 SearchCraft/2.6.0 (Baidu; P2 11.3)'
 
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -55,6 +55,32 @@ define(['src/index'], function (UA) {
             expect(UA.use(qqIOS).isWKWebview()).to.equal(true);
             expect(UA.use(ucIOS).isWKWebview()).to.equal(false);
             expect(UA.use(ucAndroid).isWKWebview()).to.equal(false);
+        });
+        it('should detect searchCraft', function () {
+            expect(UA.use(searchCraft).isSearchCraft()).to.equal(true);
+            expect(UA.use(ucIOS).isWKWebview()).to.equal(false);
+            expect(UA.use(ucAndroid).isWKWebview()).to.equal(false);
+        });
+    });
+
+    describe('version', function () {
+        it('get searchCraft version', function () {
+            expect(UA.use(searchCraft).secrVersion()).to.deep.equal([2,6,0]);
+        });
+    });
+
+    describe('version compare', function () {
+        it('version1 should equal to version2', function () {
+            expect(UA.use().versionCompare([2,6,0], [2,6,0])).to.equal(0);
+            expect(UA.use().versionCompare([2,6], [2,6,0])).to.equal(0);
+        });
+        it('version1 should large than version2', function () {
+            expect(UA.use().versionCompare([2,6,1], [2,6,0])).to.equal(1);
+            expect(UA.use().versionCompare([2,6,1], [2,6,0,5])).to.equal(1);
+        });
+        it('version1 should small than version2', function () {
+            expect(UA.use().versionCompare([2,6,0,5], [2,6,2])).to.equal(-1);
+            expect(UA.use().versionCompare([2,6], [2,6,2])).to.equal(-1);
         });
     });
 });
