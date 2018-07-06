@@ -1,6 +1,6 @@
 {
   "name": "@searchfe/user-agent",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A javascript tools lib for the frontend",
   "main": "src/index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "bugs": {
     "url": "https://github.com/searchfe/user-agent/issues"
   },
+  "files": ["src/*"],
   "homepage": "https://github.com/searchfe/user-agent#readme",
   "devDependencies": {
     "chai": "^3.5.0",
