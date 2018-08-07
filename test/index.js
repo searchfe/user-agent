@@ -17,7 +17,6 @@ define(['src/index'], function (UA) {
             expect(UA.isQQ()).to.equal(false);
             expect(UA.isUC()).to.equal(false);
             expect(UA.use(wrongChrome).isChromeMobile()).to.equal(false);
-
         });
         it('should detect QQ browser', function () {
             expect(UA.use(qqAndroid).isQQ()).to.equal(true);
