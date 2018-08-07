@@ -22,15 +22,32 @@ define(function () {
                 return match ? match[1].split('.').map(parseFloat) : [];
             },
             baiduBoxVersion: function () {
+                // 非手百版本号返回 0
+                if (!this.isBaiduBox()) {
+                    return 0;
+                }
                 var match = ua.match(/ baiduboxapp\/([0-9]+_)?([0-9.]+)/i);
                 var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.').reverse() : match[2].split('.');
                 return version ? version.map(parseFloat) : [];
             },
             // 简单搜索版本号
             secrVersion: function () {
+                // 非简单浏览器版本返回 0
+                if (!this.isSearchCraft()) {
+                    return 0;
+                }
                 var match = ua.match(/ SearchCraft\/([0-9]+_)?([0-9.]+)/i);
                 var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.') : match[2].split('.');
                 return version ? version.map(parseFloat) : [];
+            },
+            // chrome 内核版本
+            getChromeVersion: function () {
+                // 非 chrome 内核，chrome 内核版本返回 0
+                if (!this.isChromeDesktop() && !this.isChromeMobile()) {
+                    return 0;
+                }
+                var match = ua.match(/ Chrome\/([0-9]+_)?([0-9.]+)/i);
+                return match[2] ? match[2].split('.').map(parseFloat) : [];
             },
 
             // Browser

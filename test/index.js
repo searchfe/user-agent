@@ -64,8 +64,23 @@ define(['src/index'], function (UA) {
     });
 
     describe('version', function () {
-        it('get searchCraft version', function () {
+        it('should get baiduBox version', function () {
+            expect(UA.use(baiduAndroid).baiduBoxVersion()).to.deep.equal([6, 3]);
+        });
+        it('should get searchCraft version', function () {
             expect(UA.use(searchCraft).secrVersion()).to.deep.equal([2, 6, 0]);
+        });
+        it('should get Chrome version', function () {
+            expect(UA.use(ucAndroid).getChromeVersion()).to.deep.equal([40, 0, 2214, 89]);
+        });
+        it('should not get baiduBox version', function () {
+            expect(UA.use(ucAndroid).secrVersion()).to.equal(0);
+        });
+        it('should not get searchCraft version', function () {
+            expect(UA.use(ucAndroid).secrVersion()).to.equal(0);
+        });
+        it('should not get Chrome version', function () {
+            expect(UA.use(qqAndroid).secrVersion()).to.equal(0);
         });
     });
 });
