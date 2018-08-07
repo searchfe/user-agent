@@ -47,7 +47,7 @@ define(function () {
                     return 0;
                 }
                 var match = ua.match(/ Chrome\/([0-9]+_)?([0-9.]+)/i);
-                return match[2] ? match[2].split('.').map(parseFloat) : [];
+                return match && match[2] ? match[2].split('.').map(parseFloat) : [];
             },
 
             // Browser
