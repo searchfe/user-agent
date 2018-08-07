@@ -88,6 +88,10 @@ define(function () {
             isChromeMobile: function () {
                 return /Chrome\/(\S*) Mobile/.test(ua);
             },
+            // ios 上 chrome 不是 chrome 内核
+            isCriOS: function () {
+                return /CriOS/.test(ua);
+            },
             isSogouMobile: function () {
                 return /SogouMobileBrowser/.test(ua);
             },
