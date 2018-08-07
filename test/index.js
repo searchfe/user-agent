@@ -9,12 +9,15 @@ define(['src/index'], function (UA) {
     var qqApp = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36 V1_AND_SQ_7.6.8_872_YYB_D QQ/7.6.8.3615 NetType/WIFI WebP/0.4.1 Pixel/1080';
     var weixinApp = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044109 Mobile Safari/537.36 MicroMessenger/6.6.7.1320(0x26060739) NetType/WIFI Language/en';
     var searchCraft = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E216 SearchCraft/2.6.0 (Baidu; P2 11.3)';
+    var wrongChrome = 'Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; ZUK Z2121 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/ UCBrowser/11.6.8.952 Mobile Safari/537.36';
+    var chromeMobile = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/68.0.3440.83 Mobile/15G77 Safari/604.1';
 
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
             expect(UA.isQQ()).to.equal(false);
             expect(UA.isUC()).to.equal(false);
+            expect(UA.use(wrongChrome).isChromeMobile()).to.equal(false);
         });
         it('should detect QQ browser', function () {
             expect(UA.use(qqAndroid).isQQ()).to.equal(true);
@@ -61,11 +64,34 @@ define(['src/index'], function (UA) {
             expect(UA.use(ucIOS).isWKWebview()).to.equal(false);
             expect(UA.use(ucAndroid).isWKWebview()).to.equal(false);
         });
+        it('should detect CriOS', function () {
+            expect(UA.use(chromeMobile).isCriOS()).to.equal(true);
+            expect(UA.use(ucIOS).isCriOS()).to.equal(false);
+            expect(UA.use(ucAndroid).isCriOS()).to.equal(false);
+        });
     });
 
     describe('version', function () {
-        it('get searchCraft version', function () {
+        it('should get baiduBox version', function () {
+            expect(UA.use(baiduAndroid).baiduBoxVersion()).to.deep.equal([6, 3]);
+        });
+        it('should get searchCraft version', function () {
             expect(UA.use(searchCraft).secrVersion()).to.deep.equal([2, 6, 0]);
+        });
+        it('should get Chrome version', function () {
+            expect(UA.use(ucAndroid).getChromeVersion()).to.deep.equal([40, 0, 2214, 89]);
+        });
+        it('should not get baiduBox version', function () {
+            expect(UA.use(ucAndroid).baiduBoxVersion()).to.equal(0);
+            expect(UA.use(searchCraft).baiduBoxVersion()).to.equal(0);
+        });
+        it('should not get searchCraft version', function () {
+            expect(UA.use(ucAndroid).secrVersion()).to.equal(0);
+            expect(UA.use(baiduIOS).secrVersion()).to.equal(0);
+        });
+        it('should not get Chrome version', function () {
+            expect(UA.use(qqAndroid).getChromeVersion()).to.equal(0);
+            expect(UA.use(wrongChrome).getChromeVersion()).to.deep.equal([]);
         });
     });
 });
