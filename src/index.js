@@ -26,8 +26,13 @@ define(function () {
                 if (!this.isBaiduBox()) {
                     return 0;
                 }
-                var match = ua.match(/ baiduboxapp\/([0-9]+_)?([0-9.]+)/i);
-                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.').reverse() : match[2].split('.');
+                var match;
+                var version;
+                if (match = /([\d+.]+)_(?:diordna|enohpi)_/.exec(ua)) {
+                    version = match[1].split('.').reverse();
+                } else if (match = /baiduboxapp\/([\d+.]+)/.exec(ua)) {
+                    version = match[1].split('.');
+                }
                 return version ? version.map(parseFloat) : [];
             },
             // 简单搜索版本号
