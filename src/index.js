@@ -26,12 +26,13 @@ define(function () {
                 if (!this.isBaiduBox()) {
                     return 0;
                 }
-                var match;
                 var version;
-                if (match = /([\d+.]+)_(?:diordna|enohpi)_/.exec(ua)) {
-                    version = match[1].split('.').reverse();
-                } else if (match = /baiduboxapp\/([\d+.]+)/.exec(ua)) {
-                    version = match[1].split('.');
+                var oldReg = /([\d+.]+)_(?:diordna|enohpi)_/i;
+                var newReg = /baiduboxapp\/([\d+.]+)/i;
+                if (oldReg.test(ua)) {
+                    version = ua.match(oldReg)[1].split('.').reverse();
+                } else if (newReg.test(ua)) {
+                    version = ua.match(newReg)[1].split('.');
                 }
                 return version ? version.map(parseFloat) : [];
             },
