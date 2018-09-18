@@ -55,6 +55,14 @@ define(function () {
                 var match = ua.match(/ Chrome\/([0-9]+_)?([0-9.]+)/i);
                 return match && match[2] ? match[2].split('.').map(parseFloat) : [];
             },
+            androidVersion: function () {
+                var match = ua.match(/Android ([0-9.]+);/);
+                if (!match) {
+                    return [];
+                }
+                var version = match[1].split('.').map(parseFloat);
+                return version;
+            },
 
             // Browser
             isBaiduBox: function () {
