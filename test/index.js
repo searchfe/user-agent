@@ -11,6 +11,9 @@ define(['src/index'], function (UA) {
     var searchCraft = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E216 SearchCraft/2.6.0 (Baidu; P2 11.3)';
     var wrongChrome = 'Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; ZUK Z2121 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/ UCBrowser/11.6.8.952 Mobile Safari/537.36';
     var chromeMobile = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/68.0.3440.83 Mobile/15G77 Safari/604.1';
+    var pixel2 = 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3555.0 Mobile Safari/537.36';
+    var pixel2XL = 'Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3555.0 Mobile Safari/537.36';
+    var galaxyS5 = 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3555.0 Mobile Safari/537.36';
 
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -92,6 +95,12 @@ define(['src/index'], function (UA) {
         it('should not get Chrome version', function () {
             expect(UA.use(qqAndroid).getChromeVersion()).to.equal(0);
             expect(UA.use(wrongChrome).getChromeVersion()).to.deep.equal([]);
+        });
+        it('should get android version', function () {
+            expect(UA.use(galaxyS5).androidVersion()).to.deep.equal([5, 0]);
+            expect(UA.use(pixel2).androidVersion()).to.deep.equal([8, 0]);
+            expect(UA.use(pixel2XL).androidVersion()).to.deep.equal([8, 0, 0]);
+            expect(UA.use(qqIOS).androidVersion()).to.deep.equal([]);
         });
     });
 });
