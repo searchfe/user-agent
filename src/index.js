@@ -112,6 +112,12 @@ define(function () {
             isMiuiBrowser: function () {
                 return /MiuiBrowser\/(\S*)/.test(ua);
             },
+            isHUAWEIBrowser: function () {
+                return /HUAWEI/i.test(ua);
+            },
+            isMZBrowser: function () {
+                return /MZBrowser/i.test(ua);
+            },
 
             // kernel
             isWKWebview: function () {
