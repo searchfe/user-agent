@@ -113,7 +113,7 @@ define(function () {
                 return /MiuiBrowser\/(\S*)/.test(ua);
             },
             isHUAWEIBrowser: function () {
-                return /HUAWEI/i.test(ua);
+                return /HUAWEI/i.test(ua) && !/baiduboxapp/.test(ua);
             },
             isMZBrowser: function () {
                 return /MZBrowser/i.test(ua);

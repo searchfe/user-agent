@@ -16,6 +16,7 @@ define(['src/index'], function (UA) {
     var galaxyS5 = 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3555.0 Mobile Safari/537.36';
     var HUAWEIMeta9 = 'Mozilla/5.0 (Linux; Android 8.0.0; MHA-AL00 Biild/HUAWEIMHA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36';
     var MEIZUPRO6 = 'Mozilla/5.0 (Linux; Android 7.1.1; zh-CN; MZ-PRO 6 Biild/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 MZBrowser/7.7.2 UWS/2.15.0.2 Mobile Safari/537.36';
+    var HUAWEIMeta10baidu = 'Mozilla/5.0 (Linux; Android 8.1.0; ALP-AL00 Build/HUAWEIALP-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 baiduboxapp/10.13.0.11 (Baidu; P1 8.1.0)';
 
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -76,6 +77,7 @@ define(['src/index'], function (UA) {
         });
         it('should detect HUAWEIBrowser', function () {
             expect(UA.use(HUAWEIMeta9).isHUAWEIBrowser()).to.equal(true);
+            expect(UA.use(HUAWEIMeta10baidu).isHUAWEIBrowser()).to.equal(false);
         });
         it('should detect MZBrowser', function () {
             expect(UA.use(MEIZUPRO6).isMZBrowser()).to.equal(true);
