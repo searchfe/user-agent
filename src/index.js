@@ -112,8 +112,9 @@ define(function () {
             isMiuiBrowser: function () {
                 return /MiuiBrowser\/(\S*)/.test(ua);
             },
+            // HUAWEI其他浏览器的UA中也有HUAWEI字段，要剔除掉
             isHUAWEIBrowser: function () {
-                return /HUAWEI/i.test(ua) && !/baiduboxapp/.test(ua);
+                return /HUAWEI/i.test(ua) && !(/baiduboxapp/.test(ua) || /QQBrowser/.test(ua) || /UCBrowser/.test(ua) || /MicroMessenger/.test(ua));
             },
             isMZBrowser: function () {
                 return /MZBrowser/i.test(ua);
