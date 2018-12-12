@@ -20,8 +20,8 @@ define(['src/index'], function (UA) {
     var HUAWEIMeta10ProQQ = 'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36';
     var HUAWEInova3Wechat = 'Mozilla/5.0 (Linux; Android 8.1; PAR-AL00 Build/HUAWEIPAR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044304 Mobile Safari/537.36 MicroMessenger/6.7.3.1360(0x26070333) NetType/WIFI Language/zh_CN Process/tools';
     var HUAWEIMeta9UC = 'Mozilla/5.0 (Linux; U; Android 8.0.0; zh-CN; MHA-AL00 Build/HUAWEIMHA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.1.4.994 Mobile Safari/537.36';
-    var baiduIOSLite = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E277 info baiduboxapp/3.7.6.12 (Baidu; P2 10.3)';
-    var baiduAndroidLite = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 lite baiduboxapp/3.7.5.11 (Baidu; P1 7.1.1)';
+    var baiduIOSJisu = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E277 info baiduboxapp/3.7.6.12 (Baidu; P2 10.3)';
+    var baiduAndroidJisu = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 lite baiduboxapp/3.7.5.11 (Baidu; P1 7.1.1)';
 
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -90,11 +90,11 @@ define(['src/index'], function (UA) {
         it('should detect MZBrowser', function () {
             expect(UA.use(MEIZUPRO6).isMZBrowser()).to.equal(true);
         });
-        it('should detect baiduBoxLite', function () {
-            expect(UA.use(baiduAndroidLite).isBaiduBoxLite()).to.equal(true);
+        it('should detect baiduBoxJisu', function () {
+            expect(UA.use(baiduAndroidJisu).isBaiduBoxJisu()).to.equal(true);
         });
-        it('should detect baiduBoxLite', function () {
-            expect(UA.use(baiduIOSLite).isBaiduBoxLite()).to.equal(true);
+        it('should detect baiduBoxJisu', function () {
+            expect(UA.use(baiduIOSJisu).isBaiduBoxJisu()).to.equal(true);
         });
     });
 

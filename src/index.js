@@ -68,8 +68,11 @@ define(function () {
             isBaiduBox: function () {
                 return /baiduboxapp/.test(ua);
             },
-            // lite 在 iOS 的标识为 info baiduboxapp
             isBaiduBoxLite: function () {
+                return /lite baiduboxapp/.test(ua);
+            },
+            // lite 在 iOS 的标识为 info baiduboxapp
+            isBaiduBoxJisu: function () {
                 return (mod.isAndroid() && /lite baiduboxapp/.test(ua)) || (mod.isIOS() && /info baiduboxapp/.test(ua));
             },
             // isQQ 会判断是否 QQ 浏览器
