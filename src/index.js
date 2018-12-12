@@ -22,17 +22,55 @@ define(function () {
                 return match ? match[1].split('.').map(parseFloat) : [];
             },
             baiduBoxVersion: function () {
-                var match = ua.match(/ baiduboxapp\/([0-9]+_)?([0-9.]+)/i);
-                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.').reverse() : match[2].split('.')
+                // 非手百版本号返回 0
+                if (!this.isBaiduBox()) {
+                    return 0;
+                }
+                var version;
+                var oldReg = /([\d+.]+)_(?:diordna|enohpi)_/i;
+                var newReg = /baiduboxapp\/([\d+.]+)/i;
+                if (oldReg.test(ua)) {
+                    version = ua.match(oldReg)[1].split('.').reverse();
+                } else if (newReg.test(ua)) {
+                    version = ua.match(newReg)[1].split('.');
+                }
                 return version ? version.map(parseFloat) : [];
+            },
+            // 简单搜索版本号
+            secrVersion: function () {
+                // 非简单浏览器版本返回 0
+                if (!this.isSearchCraft()) {
+                    return 0;
+                }
+                var match = ua.match(/ SearchCraft\/([0-9]+_)?([0-9.]+)/i);
+                var version = /(iPhone|iPod|iPad)/.test(ua) ? match[2].split('.') : match[2].split('.');
+                return version ? version.map(parseFloat) : [];
+            },
+            // chrome 内核版本
+            getChromeVersion: function () {
+                // 非 chrome 内核，chrome 内核版本返回 0
+                if (!this.isChromeDesktop() && !this.isChromeMobile()) {
+                    return 0;
+                }
+                var match = ua.match(/ Chrome\/([0-9]+_)?([0-9.]+)/i);
+                return match && match[2] ? match[2].split('.').map(parseFloat) : [];
+            },
+            androidVersion: function () {
+                var match = ua.match(/Android ([0-9.]+);/);
+                if (!match) {
+                    return [];
+                }
+                var version = match[1].split('.').map(parseFloat);
+                return version;
             },
 
             // Browser
             isBaiduBox: function () {
                 return /baiduboxapp/.test(ua);
             },
+            // lite 在 iOS 的标识为 info baiduboxapp
             isBaiduBoxLite: function () {
-                return /lite baiduboxapp/.test(ua);
+                return (mod.isAndroid() && /lite baiduboxapp/.test(ua)) || (mod.isIOS() && /info baiduboxapp/.test(ua));
             },
             // isQQ 会判断是否 QQ 浏览器
             // 但 Android 平台的手机内置 QQ 的 UA 没有 QQBrowser 字段
@@ -65,11 +103,22 @@ define(function () {
             isChromeMobile: function () {
                 return /Chrome\/(\S*) Mobile/.test(ua);
             },
+            // ios 上 chrome 不是 chrome 内核
+            isCriOS: function () {
+                return /CriOS/.test(ua);
+            },
             isSogouMobile: function () {
                 return /SogouMobileBrowser/.test(ua);
             },
             isMiuiBrowser: function () {
                 return /MiuiBrowser\/(\S*)/.test(ua);
+            },
+            // HUAWEI其他浏览器的UA中也有HUAWEI字段，要剔除掉
+            isHUAWEIBrowser: function () {
+                return /HUAWEI/i.test(ua) && !(/baiduboxapp/.test(ua) || /QQBrowser/.test(ua) || /UCBrowser/.test(ua) || /MicroMessenger/.test(ua));
+            },
+            isMZBrowser: function () {
+                return /MZBrowser/i.test(ua);
             },
 
             // kernel
@@ -86,7 +135,7 @@ define(function () {
             use: factory
         };
         return mod;
-    };
+    }
 
     return factory(navigator.userAgent);
 });

@@ -1,25 +1,28 @@
 {
   "name": "@searchfe/user-agent",
-  "version": "1.0.6",
+  "version": "1.2.3",
   "description": "A javascript tools lib for the frontend",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src test *.js",
     "preversion": "npm run lint && npm test",
     "postversion": "git push && git push --tags",
-    "ci": "karma start --reporters mocha,coverage,coveralls",
+    "coveralls": "karma start --reporters mocha,coverage,coveralls",
     "test": "karma start"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/searchfe/utils.git"
+    "url": "git+https://github.com/searchfe/user-agent.git"
   },
   "author": "pearl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/searchfe/utils/issues"
+    "url": "https://github.com/searchfe/user-agent/issues"
   },
-  "homepage": "https://github.com/searchfe/utils#readme",
+  "files": [
+    "src/*"
+  ],
+  "homepage": "https://github.com/searchfe/user-agent#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
