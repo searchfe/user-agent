@@ -71,6 +71,10 @@ define(function () {
             isBaiduBoxLite: function () {
                 return /lite baiduboxapp/.test(ua);
             },
+            // lite 在 iOS 的标识为 info baiduboxapp
+            isBaiduBoxJisu: function () {
+                return (mod.isAndroid() && /lite baiduboxapp/.test(ua)) || (mod.isIOS() && /info baiduboxapp/.test(ua));
+            },
             // isQQ 会判断是否 QQ 浏览器
             // 但 Android 平台的手机内置 QQ 的 UA 没有 QQBrowser 字段
             // 所以请使用 isQQApp || isWeixinApp || isQQBrowser 代替此接口
