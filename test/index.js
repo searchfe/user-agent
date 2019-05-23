@@ -22,6 +22,7 @@ define(['src/index'], function (UA) {
     var HUAWEIMeta9UC = 'Mozilla/5.0 (Linux; U; Android 8.0.0; zh-CN; MHA-AL00 Build/HUAWEIMHA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.1.4.994 Mobile Safari/537.36';
     var baiduIOSJisu = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E277 info baiduboxapp/3.7.6.12 (Baidu; P2 10.3)';
     var baiduAndroidJisu = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 lite baiduboxapp/3.7.5.11 (Baidu; P1 7.1.1)';
+    var swanApp = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 swan/2.4.0 swan-baiduboxapp/11.9.0.1 baiduboxapp/11.9.0.1 (Baidu; P2 12.2)';
 
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -95,6 +96,9 @@ define(['src/index'], function (UA) {
         });
         it('should detect baiduBoxJisu', function () {
             expect(UA.use(baiduIOSJisu).isBaiduBoxJisu()).to.equal(true);
+        });
+        it('should detect swanApp', function () {
+            expect(UA.use(swanApp).isSwanApp()).to.equal(true);
         });
     });
 
