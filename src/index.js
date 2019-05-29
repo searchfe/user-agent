@@ -134,7 +134,7 @@ define(function () {
                 return mod.isIOS() && webkitVersion[0] && webkitVersion[0] <= 600;
             },
             isSwanApp: function () {
-                return /swan-baiduboxapp/.test(ua);
+                return /(swan-baiduboxapp|baiduboxapp-swan)/.test(ua);
             },
             // functionality
             use: factory
