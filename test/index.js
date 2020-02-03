@@ -98,7 +98,7 @@ define(['src/index'], function (UA) {
             expect(UA.use(baiduIOSJisu).isBaiduBoxJisu()).to.equal(true);
         });
         it('should detect swanApp', function () {
-            expect(UA.use(swanApp).isSwanApp()).to.equal(true);
+            expect(UA.use(swanApp).isXcxApp()).to.equal(true);
         });
     });
 

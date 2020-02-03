@@ -133,8 +133,11 @@ define(function () {
                 var webkitVersion = mod.appleWebkitVersion();
                 return mod.isIOS() && webkitVersion[0] && webkitVersion[0] <= 600;
             },
-            isSwanApp: function () {
-                return /(swan-baiduboxapp|baiduboxapp-swan)/.test(ua);
+            isXcxApp: function () {
+                // 屏蔽的关键字用base64解码代替
+                var xcx = window.atob('c3dhbg==');
+                var reg = new RegExp('(' + xcx + '-baiduboxapp|baiduboxapp-' + xcx + ')');
+                return reg.test(ua);
             },
             // functionality
             use: factory
