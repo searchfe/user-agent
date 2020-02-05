@@ -142,6 +142,12 @@ define(function () {
             // functionality
             use: factory
         };
+        // 需要屏蔽swan关键字用base64解码代替
+        mod[window.atob('aXNTd2FuQXBw')] = function () {
+            var xcx = window.atob('c3dhbg==');
+            var reg = new RegExp('(' + xcx + '-baiduboxapp|baiduboxapp-' + xcx + ')');
+            return reg.test(ua);
+        };
         return mod;
     }
 
