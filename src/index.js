@@ -75,6 +75,10 @@ define(function () {
             isBaiduBoxJisu: function () {
                 return (mod.isAndroid() && /lite baiduboxapp/.test(ua)) || (mod.isIOS() && /info baiduboxapp/.test(ua));
             },
+            // 百度app视频版
+            isBaiduBoxVision: function () {
+                return /baiduboxvision/.test(ua);
+            },
             // isQQ 会判断是否 QQ 浏览器
             // 但 Android 平台的手机内置 QQ 的 UA 没有 QQBrowser 字段
             // 所以请使用 isQQApp || isWeixinApp || isQQBrowser 代替此接口
