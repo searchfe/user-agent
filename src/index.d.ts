@@ -23,6 +23,7 @@ interface factory {
     isUC(): boolean;
     isChromeDesktop(): boolean;
     isChromeMobile(): boolean;
+    isSafariBrowser(): boolean;
     isCriOS(): boolean;
     isSogouMobile(): boolean;
     isMiuiBrowser(): boolean;

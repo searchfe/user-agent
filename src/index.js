@@ -127,7 +127,13 @@ define(function () {
             isMZBrowser: function () {
                 return /MZBrowser/i.test(ua);
             },
-
+            // 判断是否为iphone手机的safari浏览器
+            isSafariBrowser: function () {
+                const uaLower = ua.toLowerCase();
+                return (uaLower.indexOf('applewebkit') > -1 && uaLower.indexOf('mobile') > -1 && uaLower.indexOf('safari') > -1 &&
+                    uaLower.indexOf('linux') === -1 && uaLower.indexOf('android') === -1 && uaLower.indexOf('chrome') === -1 &&
+                    uaLower.indexOf('ios') === -1 && uaLower.indexOf('browser') === -1);
+            },
             // kernel
             isWKWebview: function () {
                 var webkitVersion = mod.appleWebkitVersion();
