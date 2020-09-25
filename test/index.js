@@ -61,6 +61,11 @@ define(['src/index'], function (UA) {
         it('should detect AppleWebkit version', function () {
             expect(UA.use(safariIOS).appleWebkitVersion()).to.deep.equal([603, 1, 30]);
         });
+        it('should detect safari browser', function () {
+            expect(UA.use(safariIOS).isSafariBrowser()).to.equal(true);
+            expect(UA.use(qqIOS).isSafariBrowser()).to.equal(false);
+            expect(UA.use(chromeMobile).isSafariBrowser()).to.equal(false);
+        });
         it('should detect UIWebview', function () {
             expect(UA.use(qqIOS).isUIWebview()).to.equal(false);
             expect(UA.use(ucIOS).isUIWebview()).to.equal(true);
