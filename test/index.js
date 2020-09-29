@@ -69,12 +69,12 @@ define(['src/index'], function (UA) {
             expect(UA.use(chromeMobile).isSafariBrowser()).to.equal(false);
         });
         it('should detect only chrome browser', function () {
-            expect(UA.use(chromeMobile).isOnlyChromeBrowser()).to.equal(true);
-            expect(UA.use(HUAWEIChromeBrowser).isOnlyChromeBrowser()).to.equal(true);
-            expect(UA.use(HUAWEIMeta9).isOnlyChromeBrowser()).to.equal(false);
-            expect(UA.use(HUAWEIMeta9UC).isOnlyChromeBrowser()).to.equal(false);
-            expect(UA.use(XiaoMiBrowser).isOnlyChromeBrowser()).to.equal(false);
-            expect(UA.use(MEIZUPRO6).isOnlyChromeBrowser()).to.equal(false);
+            expect(UA.use(chromeMobile).isGoogleChrome()).to.equal(true);
+            expect(UA.use(HUAWEIChromeBrowser).isGoogleChrome()).to.equal(true);
+            expect(UA.use(HUAWEIMeta9).isGoogleChrome()).to.equal(false);
+            expect(UA.use(HUAWEIMeta9UC).isGoogleChrome()).to.equal(false);
+            expect(UA.use(XiaoMiBrowser).isGoogleChrome()).to.equal(false);
+            expect(UA.use(MEIZUPRO6).isGoogleChrome()).to.equal(false);
         });
         it('should detect UIWebview', function () {
             expect(UA.use(qqIOS).isUIWebview()).to.equal(false);
