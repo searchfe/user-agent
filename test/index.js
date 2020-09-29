@@ -13,8 +13,10 @@ define(['src/index'], function (UA) {
     var chromeMobile = 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/604.1.34 (KHTML, like Gecko) CriOS/68.0.3440.83 Mobile/15G77 Safari/604.1';
     var pixel2 = 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3555.0 Mobile Safari/537.36';
     var pixel2XL = 'Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3555.0 Mobile Safari/537.36';
+    var XiaoMiBrowser = 'Mozilla/5.0 (Linux; U; Android 6.0; zh-cn; Redmi Note 4 Build/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/71.0.3578.141 Mobile Safari/537.36 XiaoMi/MiuiBrowser/12.8.32';
     var galaxyS5 = 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3555.0 Mobile Safari/537.36';
     var HUAWEIMeta9 = 'Mozilla/5.0 (Linux; Android 8.0.0; MHA-AL00 Biild/HUAWEIMHA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36';
+    var HUAWEIChromeBrowser = 'Mozilla/5.0 (Linux; Android 10; VOG-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.117 Mobile Safari/537.36';
     var MEIZUPRO6 = 'Mozilla/5.0 (Linux; Android 7.1.1; zh-CN; MZ-PRO 6 Biild/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 MZBrowser/7.7.2 UWS/2.15.0.2 Mobile Safari/537.36';
     var HUAWEIMeta10baidu = 'Mozilla/5.0 (Linux; Android 8.1.0; ALP-AL00 Build/HUAWEIALP-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 baiduboxapp/10.13.0.11 (Baidu; P1 8.1.0)';
     var HUAWEIMeta10ProQQ = 'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36';
@@ -65,6 +67,14 @@ define(['src/index'], function (UA) {
             expect(UA.use(safariIOS).isSafariBrowser()).to.equal(true);
             expect(UA.use(qqIOS).isSafariBrowser()).to.equal(false);
             expect(UA.use(chromeMobile).isSafariBrowser()).to.equal(false);
+        });
+        it('should detect only chrome browser', function () {
+            expect(UA.use(chromeMobile).isOnlyChromeBrowser()).to.equal(true);
+            expect(UA.use(HUAWEIChromeBrowser).isOnlyChromeBrowser()).to.equal(true);
+            expect(UA.use(HUAWEIMeta9).isOnlyChromeBrowser()).to.equal(false);
+            expect(UA.use(HUAWEIMeta9UC).isOnlyChromeBrowser()).to.equal(false);
+            expect(UA.use(XiaoMiBrowser).isOnlyChromeBrowser()).to.equal(false);
+            expect(UA.use(MEIZUPRO6).isOnlyChromeBrowser()).to.equal(false);
         });
         it('should detect UIWebview', function () {
             expect(UA.use(qqIOS).isUIWebview()).to.equal(false);
