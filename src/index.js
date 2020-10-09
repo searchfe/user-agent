@@ -134,6 +134,14 @@ define(function () {
                     uaLower.indexOf('linux') === -1 && uaLower.indexOf('android') === -1 && uaLower.indexOf('chrome') === -1 &&
                     uaLower.indexOf('ios') === -1 && uaLower.indexOf('browser') === -1);
             },
+            /**
+             * 仅只是chrome浏览器（排除安卓下谷歌内核浏览器）
+             * @return {boolean} chrome
+             */
+            isGoogleChrome: function () {
+                return /(?:Chrome|CrMo|CriOS)\/([0-9]{1,2}\.[0-9]\.[0-9]{3,4}\.[0-9]+)/i.test(ua) &&
+                    !/(samsung|miuibrowser|ucbrowser|qqbrowser|huaweibrowser|oppobrowser|vivobrowser|lebrowser|mzbrowser)/i.test(ua);
+            },
             // kernel
             isWKWebview: function () {
                 var webkitVersion = mod.appleWebkitVersion();
