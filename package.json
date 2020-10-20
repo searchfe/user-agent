@@ -5,7 +5,6 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src test *.js",
-    "postversion": "git push && git push --tags",
     "coveralls": "karma start --reporters mocha,coverage,coveralls",
     "test": "karma start"
   },

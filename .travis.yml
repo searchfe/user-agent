@@ -1,8 +1,7 @@
 language: node_js
 sudo: required
 dist: trusty
-node_js:
-  - lts/*
+node_js: lts/*
 env:
   - BROWSER=ChromeHeadless
 addons:
@@ -10,8 +9,20 @@ addons:
 cache:
   directories:
     - "node_modules"
-script:
-  - npm run lint
-  - npm run coveralls
 before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+
+jobs:
+  include:
+    - stage: test
+      name: 'Linting'
+      script: npm run lint
+    - name: 'Unit Test'
+      script: npm run coveralls
+    - stage: release
+      if: branch = master
+      script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: npx semantic-release
