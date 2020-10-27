@@ -25,6 +25,8 @@ define(['src/index'], function (UA) {
     var baiduIOSJisu = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E277 info baiduboxapp/3.7.6.12 (Baidu; P2 10.3)';
     var baiduAndroidJisu = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 lite baiduboxapp/3.7.5.11 (Baidu; P1 7.1.1)';
     var swanApp = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 swan/2.4.0 swan-baiduboxapp/11.9.0.1 baiduboxapp/11.9.0.1 (Baidu; P2 12.2)';
+    // oppo原生浏览器
+    var oppoBrowser = 'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; PBBM30 Build/OPM1.171019.026) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Mobile Safari/537.36 HeyTapBrowser/10.7.4.2';
 
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -75,6 +77,7 @@ define(['src/index'], function (UA) {
             expect(UA.use(HUAWEIMeta9UC).isGoogleChrome()).to.equal(false);
             expect(UA.use(XiaoMiBrowser).isGoogleChrome()).to.equal(false);
             expect(UA.use(MEIZUPRO6).isGoogleChrome()).to.equal(false);
+            expect(UA.use(oppoBrowser).isGoogleChrome()).to.equal(false);
         });
         it('should detect UIWebview', function () {
             expect(UA.use(qqIOS).isUIWebview()).to.equal(false);
