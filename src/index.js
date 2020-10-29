@@ -139,8 +139,9 @@ define(function () {
              * @return {boolean} chrome
              */
             isGoogleChrome: function () {
-                return /(?:Chrome|CrMo|CriOS)\/([0-9]{1,2}\.[0-9]\.[0-9]{3,4}\.[0-9]+)/i.test(ua) &&
-                    !/(samsung|miuibrowser|ucbrowser|qqbrowser|huaweibrowser|heytapbrowser|oppobrowser|vivobrowser|lebrowser|mzbrowser)/i.test(ua);
+                var andrChrome = /^Mozilla\/(\d*?(\.\d*?)*?) \(Linux; Android (\d*?(\.\d*?)*?); .*?\) AppleWebKit\/(\d*?(\.\d*?)*?) \(KHTML, like Gecko\) Chrome\/(\d*?(\.\d*?)*?) Mobile Safari\/(\d*?(\.\d*?)*?)$/.test(ua);
+                var iosChrome = /^Mozilla\/(\d*?(\.\d*?)*?) \(iPhone; CPU iPhone OS (\d*?(_\d*?)*?) like Mac OS X\) AppleWebKit\/(\d*?(\.\d*?)*?) \(KHTML, like Gecko\) CriOS\/(\d*?(\.\d*?)*?) Mobile\/(.*?) Safari\/(\d*?(\.\d*?)*?)$/.test(ua);
+                return andrChrome || iosChrome;
             },
             // kernel
             isWKWebview: function () {
