@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/searchfe/user-agent/compare/v1.3.4...v1.4.0) (2021-01-07)
+
+
+### Features
+
+* 支持tomas百度老年版本的识别 ([170f63a](https://github.com/searchfe/user-agent/commit/170f63a157356ecf96af39b5a615b44857711bf3))
+
 ## [1.3.4](https://github.com/searchfe/user-agent/compare/v1.3.3...v1.3.4) (2020-10-29)
 
 
