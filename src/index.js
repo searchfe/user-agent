@@ -63,7 +63,10 @@ define(function () {
                 var version = match[1].split('.').map(parseFloat);
                 return version;
             },
-
+            // 是否为百度大字版
+            isTomas: function () {
+                return /tomas/.test(ua);
+            },
             // Browser
             isBaiduBox: function () {
                 return /baiduboxapp/.test(ua);
