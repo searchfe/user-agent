@@ -27,7 +27,8 @@ define(['src/index'], function (UA) {
     var swanApp = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 swan/2.4.0 swan-baiduboxapp/11.9.0.1 baiduboxapp/11.9.0.1 (Baidu; P2 12.2)';
     // oppo原生浏览器
     var oppoBrowser = 'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; PBBM30 Build/OPM1.171019.026) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Mobile Safari/537.36 HeyTapBrowser/10.7.4.2';
-
+    var tomasApp = 'Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.1 matrixstyle/1 SP-engine/0.0.0 bdapp/1.0 (tomas; tomas) tomas/1.0.0.1 (Baidu; P1 10) NABar/1.0';
+    var baiduboxvision = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 SP-engine/2.24.0 bdapp/1.0 (baiduboxvision; baiduboxvision) baiduboxvision/1.4.0.10 (Baidu; P2 14.0) main/1.0 bdapp/1.0 (baiduboxvision; baiduboxvision) baiduboxvision/1.4.0.10 (Baidu; P2 14.0) NABar/1.0';
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
@@ -117,6 +118,24 @@ define(['src/index'], function (UA) {
         });
         it('should detect swanApp', function () {
             expect(UA.use(swanApp).isXcxApp()).to.equal(true);
+        });
+        it('should detect baiduboxvision', function () {
+            expect(UA.use(baiduboxvision).isBaiduBoxVision()).to.equal(true);
+        });
+        it('should detect baiduboxvision is bdapp', function () {
+            expect(UA.use(baiduboxvision).isBdapp()).to.equal(true);
+        });
+        it('should detect baiduboxvision is baiduboxOrBdapp', function () {
+            expect(UA.use(baiduboxvision).isBaiduboxOrBdapp()).to.equal(true);
+        });
+        it('should detect tomas', function () {
+            expect(UA.use(tomasApp).isTomas()).to.equal(true);
+        });
+        it('should detect tomas is bdapp', function () {
+            expect(UA.use(tomasApp).isBdapp()).to.equal(true);
+        });
+        it('should detect tomas is baiduboxOrBdapp', function () {
+            expect(UA.use(tomasApp).isBaiduboxOrBdapp()).to.equal(true);
         });
     });
 
