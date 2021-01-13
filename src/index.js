@@ -64,11 +64,11 @@ define(function () {
                 return version;
             },
             // 是否为百度端内产品
-            isBaiduOrBdBox: function () {
-                return this.isBaiduBox() || this.isBdBox();
+            isBaiduboxOrBdapp: function () {
+                return this.isBaiduBox() || this.isBdapp();
             },
             // 按照新UA规范，是否为百度矩阵产品
-            isBdBox: function () {
+            isBdapp: function () {
                 return /bdapp/.test(ua);
             },
             // 是否为百度大字版
