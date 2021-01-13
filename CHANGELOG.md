@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/searchfe/user-agent/compare/v1.4.0...v1.5.0) (2021-01-13)
+
+
+### Features
+
+* 支持识别百度矩阵产品和百度端内产品 ([89efc11](https://github.com/searchfe/user-agent/commit/89efc110d5986ebbc96db1eff1ad2e008aa31221))
+
 # [1.4.0](https://github.com/searchfe/user-agent/compare/v1.3.4...v1.4.0) (2021-01-07)
 
 
