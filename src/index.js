@@ -36,6 +36,19 @@ define(function () {
                 }
                 return version ? version.map(parseFloat) : [];
             },
+            // 百度主线或矩阵产品版本号
+            baiduBoxOrBaiduappVersion: function () {
+                if (!this.isBaiduboxOrBdapp()) {
+                    return 0;
+                }
+                if (this.isBaiduBox()) {
+                    return this.baiduBoxVersion();
+                } else {
+                    var reg = /bdapp\/[\d+.]+\s\(\w+;\s\w+\)\s\w+\/([\d+.]+)/i;
+                    var version = ua.match(reg)[1].split('.');
+                    return version ? version.map(parseFloat) : [];
+                }
+            },
             // 简单搜索版本号
             secrVersion: function () {
                 // 非简单浏览器版本返回 0

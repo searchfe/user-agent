@@ -63,6 +63,26 @@ define(['src/index'], function (UA) {
             expect(UA.use(baiduIOS).baiduBoxVersion()).to.deep.equal([9, 0, 0, 8]);
             expect(UA.use(baiduAndroid).baiduBoxVersion()).to.deep.equal([6, 3]);
         });
+        it('should detect baiduBoxOrBaiduapp version', function () {
+            expect(UA.use(qqApp).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(weixinApp).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(searchCraft).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(wrongChrome).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(chromeMobile).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(pixel2).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(pixel2XL).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(XiaoMiBrowser).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(galaxyS5).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(HUAWEIMeta9).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(HUAWEIChromeBrowser).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(oppoBrowser).baiduBoxOrBaiduappVersion()).to.deep.equal(0);
+            expect(UA.use(baiduIOS).baiduBoxOrBaiduappVersion()).to.deep.equal([9, 0, 0, 8]);
+            expect(UA.use(baiduAndroid).baiduBoxOrBaiduappVersion()).to.deep.equal([6, 3]);
+            expect(UA.use(baiduIOSJisu).baiduBoxOrBaiduappVersion()).to.deep.equal([3, 7, 6, 12]);
+            expect(UA.use(baiduAndroidJisu).baiduBoxOrBaiduappVersion()).to.deep.equal([3, 7, 5, 11]);
+            expect(UA.use(tomasApp).baiduBoxOrBaiduappVersion()).to.deep.equal([1, 0, 0, 1]);
+            expect(UA.use(baiduboxvision).baiduBoxOrBaiduappVersion()).to.deep.equal([1, 4, 0, 10]);
+        });
         it('should detect AppleWebkit version', function () {
             expect(UA.use(safariIOS).appleWebkitVersion()).to.deep.equal([603, 1, 30]);
         });
