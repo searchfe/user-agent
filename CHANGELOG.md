@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/searchfe/user-agent/compare/v1.5.0...v1.6.0) (2021-02-09)
+
+
+### Features
+
+* 增加百度主线（baidubox）或矩阵产品（bdapp）的版本判断 ([65df4ad](https://github.com/searchfe/user-agent/commit/65df4adda413efa29365e90fd4fc200092c3b846))
+
 # [1.5.0](https://github.com/searchfe/user-agent/compare/v1.4.0...v1.5.0) (2021-01-13)
 
 
