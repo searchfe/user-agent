@@ -36,6 +36,22 @@ define(function () {
                 }
                 return version ? version.map(parseFloat) : [];
             },
+            // 百度主线或矩阵产品版本号
+            baiduBoxOrBdappVersion: function () {
+                if (this.isBaiduBox()) {
+                    return this.baiduBoxVersion() && this.baiduBoxVersion().length > 0 ? this.baiduBoxVersion() : null;
+                }
+                if (this.isBdapp()) return this.bdappVersion();
+                return null;
+            },
+            // 矩阵产品版本号
+            bdappVersion: function () {
+                if (!this.isBdapp()) return null;
+                var reg = /bdapp\/[\d+.]+\s\(\w+;\s\w+\)\s\w+\/([\d+.]+)/i;
+                var result = ua.match(reg);
+                var version = result ? result[1].split('.') : null;
+                return version ? version.map(parseFloat) : null;
+            },
             // 简单搜索版本号
             secrVersion: function () {
                 // 非简单浏览器版本返回 0
