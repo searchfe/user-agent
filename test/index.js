@@ -168,4 +168,28 @@ define(['src/index'], function (UA) {
             expect(UA.use(qqIOS).androidVersion()).to.deep.equal([]);
         });
     });
+    describe('baiduBoxOrbdappVersion', function () {
+        var testBdappUa = 'Mobile/15E148 SP-engine/2.24.0 bdapp/1.0 (test) test  (Baidu; P2 14.0) main/1.0 bdapp/1.0 (Baidu; P2 14.0) NABar/1.0';
+        var btestBaiduboxappUa = '(KHTML, like Gecko) Mobile/13F69 baiduboxapp /1000306f/C4FF069AC425606E29ACA3E490065B7C5DFD70645OCEANNARPH/1';
+        it('should detect baiduBoxOrBdapp version', function () {
+            expect(UA.use(btestBaiduboxappUa).baiduBoxOrBdappVersion()).to.deep.equal(null);
+            expect(UA.use(baiduIOS).baiduBoxOrBdappVersion()).to.deep.equal([9, 0, 0, 8]);
+            expect(UA.use(baiduAndroid).baiduBoxOrBdappVersion()).to.deep.equal([6, 3]);
+            expect(UA.use(baiduIOSJisu).baiduBoxOrBdappVersion()).to.deep.equal([3, 7, 6, 12]);
+            expect(UA.use(baiduAndroidJisu).baiduBoxOrBdappVersion()).to.deep.equal([3, 7, 5, 11]);
+            expect(UA.use(testBdappUa).baiduBoxOrBdappVersion()).to.deep.equal(null);
+            expect(UA.use(tomasApp).baiduBoxOrBdappVersion()).to.deep.equal([1, 0, 0, 1]);
+            expect(UA.use(baiduboxvision).baiduBoxOrBdappVersion()).to.deep.equal([1, 4, 0, 10]);
+            expect(UA.use(qqApp).baiduBoxOrBdappVersion()).to.deep.equal(null);
+            expect(UA.use(weixinApp).baiduBoxOrBdappVersion()).to.deep.equal(null);
+        });
+        it('should detect bdapp version', function () {
+            expect(UA.use(testBdappUa).bdappVersion()).to.deep.equal(null);
+            expect(UA.use(btestBaiduboxappUa).bdappVersion()).to.deep.equal(null);
+            expect(UA.use(tomasApp).bdappVersion()).to.deep.equal([1, 0, 0, 1]);
+            expect(UA.use(baiduboxvision).bdappVersion()).to.deep.equal([1, 4, 0, 10]);
+            expect(UA.use(qqApp).bdappVersion()).to.deep.equal(null);
+            expect(UA.use(weixinApp).bdappVersion()).to.deep.equal(null);
+        });
+    });
 });

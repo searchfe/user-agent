@@ -6,10 +6,13 @@ interface factory {
     iOSVersion(): [number, number] | [];
     appleWebkitVersion(): Array<number>;
     baiduBoxVersion(): Array<number>;
+    baiduBoxOrBdappVersion(): Array<number> | null;
+    bdappVersion(): Array<number>| null;
     secrVersion(): Array<number>;
     getChromeVersion(): Array<number>;
     androidVersion(): Array<number>;
     isBaiduboxOrBdapp(): boolean;
+    isTomas(): boolean;
     isBdapp(): boolean;
     isBaiduBox(): boolean;
     isBaiduBoxLite(): boolean;
