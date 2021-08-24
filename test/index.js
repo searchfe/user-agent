@@ -29,6 +29,8 @@ define(['src/index'], function (UA) {
     var oppoBrowser = 'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; PBBM30 Build/OPM1.171019.026) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Mobile Safari/537.36 HeyTapBrowser/10.7.4.2';
     var tomasApp = 'Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.1 matrixstyle/1 SP-engine/0.0.0 bdapp/1.0 (tomas; tomas) tomas/1.0.0.1 (Baidu; P1 10) NABar/1.0';
     var baiduboxvision = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 SP-engine/2.24.0 bdapp/1.0 (baiduboxvision; baiduboxvision) baiduboxvision/1.4.0.10 (Baidu; P2 14.0) main/1.0 bdapp/1.0 (baiduboxvision; baiduboxvision) baiduboxvision/1.4.0.10 (Baidu; P2 14.0) NABar/1.0';
+    // 关怀版浏览器
+    var baiduboxsenior = 'Mozilla/5.0 (Linux; Android 8.1.0; ONEPLUS A5000 Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 bdapp/1.0 (baiduboxsenior; baiduboxsenior) baiduboxsenior/1.0.0.0 (Baidu; P1 8.1.0)';
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
@@ -137,11 +139,27 @@ define(['src/index'], function (UA) {
         it('should detect tomas is baiduboxOrBdapp', function () {
             expect(UA.use(tomasApp).isBaiduboxOrBdapp()).to.equal(true);
         });
+
+        it('should detect baiduboxsenior', function () {
+            expect(UA.use(baiduboxsenior).isBaiduboxsenior()).to.equal(true);
+            expect(UA.use(baiduboxsenior).isTomas()).to.equal(false);
+            expect(UA.use(baiduboxsenior).isBdapp()).to.equal(true);
+            expect(UA.use(baiduboxsenior).isBaiduboxOrBdapp()).to.equal(true);
+            expect(UA.use(baiduboxsenior).isBaiduBox()).to.equal(false);
+            expect(UA.use(tomasApp).isBaiduboxsenior()).to.equal(false);
+            expect(UA.use(baiduboxvision).isBaiduboxsenior()).to.equal(false);
+            expect(UA.use(baiduAndroidJisu).isBaiduboxsenior()).to.equal(false);
+            expect(UA.use(baiduIOSJisu).isBaiduboxsenior()).to.equal(false);
+            expect(UA.use(baiduIOS).isBaiduboxsenior()).to.equal(false);
+            expect(UA.use(baiduAndroid).isBaiduboxsenior()).to.equal(false);
+        });
+
     });
 
     describe('version', function () {
         it('should get baiduBox version', function () {
             expect(UA.use(baiduAndroid).baiduBoxVersion()).to.deep.equal([6, 3]);
+            expect(UA.use(baiduboxsenior).baiduBoxVersion()).to.deep.equal(0);
         });
         it('should get searchCraft version', function () {
             expect(UA.use(searchCraft).secrVersion()).to.deep.equal([2, 6, 0]);
@@ -152,10 +170,12 @@ define(['src/index'], function (UA) {
         it('should not get baiduBox version', function () {
             expect(UA.use(ucAndroid).baiduBoxVersion()).to.equal(0);
             expect(UA.use(searchCraft).baiduBoxVersion()).to.equal(0);
+            expect(UA.use(baiduboxsenior).baiduBoxVersion()).to.deep.equal(0);
         });
         it('should not get searchCraft version', function () {
             expect(UA.use(ucAndroid).secrVersion()).to.equal(0);
             expect(UA.use(baiduIOS).secrVersion()).to.equal(0);
+            expect(UA.use(baiduboxsenior).secrVersion()).to.equal(0);
         });
         it('should not get Chrome version', function () {
             expect(UA.use(qqAndroid).getChromeVersion()).to.equal(0);
@@ -182,6 +202,7 @@ define(['src/index'], function (UA) {
             expect(UA.use(baiduboxvision).baiduBoxOrBdappVersion()).to.deep.equal([1, 4, 0, 10]);
             expect(UA.use(qqApp).baiduBoxOrBdappVersion()).to.deep.equal(null);
             expect(UA.use(weixinApp).baiduBoxOrBdappVersion()).to.deep.equal(null);
+            expect(UA.use(baiduboxsenior).baiduBoxOrBdappVersion()).to.deep.equal([1, 0, 0, 0]);
         });
         it('should detect bdapp version', function () {
             expect(UA.use(testBdappUa).bdappVersion()).to.deep.equal(null);
@@ -190,6 +211,7 @@ define(['src/index'], function (UA) {
             expect(UA.use(baiduboxvision).bdappVersion()).to.deep.equal([1, 4, 0, 10]);
             expect(UA.use(qqApp).bdappVersion()).to.deep.equal(null);
             expect(UA.use(weixinApp).bdappVersion()).to.deep.equal(null);
+            expect(UA.use(baiduboxsenior).bdappVersion()).to.deep.equal([1, 0, 0, 0]);
         });
     });
 });
