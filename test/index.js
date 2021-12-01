@@ -31,6 +31,8 @@ define(['src/index'], function (UA) {
     var baiduboxvision = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 SP-engine/2.24.0 bdapp/1.0 (baiduboxvision; baiduboxvision) baiduboxvision/1.4.0.10 (Baidu; P2 14.0) main/1.0 bdapp/1.0 (baiduboxvision; baiduboxvision) baiduboxvision/1.4.0.10 (Baidu; P2 14.0) NABar/1.0';
     // 关怀版浏览器
     var baiduboxsenior = 'Mozilla/5.0 (Linux; Android 8.1.0; ONEPLUS A5000 Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 bdapp/1.0 (baiduboxsenior; baiduboxsenior) baiduboxsenior/1.0.0.0 (Baidu; P1 8.1.0)';
+    // 趣新热 APP 即小米白牌
+    var knewsApp = 'Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.13.0 SP-engine/0.0.0 bdapp/1.0 (knews; knews) knews/2.0.0.1 (Baidu; P1 10) NABar/1.0'
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
@@ -139,6 +141,15 @@ define(['src/index'], function (UA) {
         it('should detect tomas is baiduboxOrBdapp', function () {
             expect(UA.use(tomasApp).isBaiduboxOrBdapp()).to.equal(true);
         });
+        it('should detect knews', function () {
+            expect(UA.use(knewsApp).isKnews()).to.equal(true);
+        });
+        it('should detect knews is bdapp', function () {
+            expect(UA.use(knewsApp).isBdapp()).to.equal(true);
+        });
+        it('should detect knews is baiduboxOrBdapp', function () {
+            expect(UA.use(knewsApp).isBaiduboxOrBdapp()).to.equal(true);
+        });
 
         it('should detect baiduboxsenior', function () {
             expect(UA.use(baiduboxsenior).isBaiduboxsenior()).to.equal(true);
@@ -147,6 +158,7 @@ define(['src/index'], function (UA) {
             expect(UA.use(baiduboxsenior).isBaiduboxOrBdapp()).to.equal(true);
             expect(UA.use(baiduboxsenior).isBaiduBox()).to.equal(false);
             expect(UA.use(tomasApp).isBaiduboxsenior()).to.equal(false);
+            expect(UA.use(knewsApp).isBaiduboxsenior()).to.equal(false);
             expect(UA.use(baiduboxvision).isBaiduboxsenior()).to.equal(false);
             expect(UA.use(baiduAndroidJisu).isBaiduboxsenior()).to.equal(false);
             expect(UA.use(baiduIOSJisu).isBaiduboxsenior()).to.equal(false);
@@ -199,6 +211,7 @@ define(['src/index'], function (UA) {
             expect(UA.use(baiduAndroidJisu).baiduBoxOrBdappVersion()).to.deep.equal([3, 7, 5, 11]);
             expect(UA.use(testBdappUa).baiduBoxOrBdappVersion()).to.deep.equal(null);
             expect(UA.use(tomasApp).baiduBoxOrBdappVersion()).to.deep.equal([1, 0, 0, 1]);
+            expect(UA.use(knewsApp).baiduBoxOrBdappVersion()).to.deep.equal([2, 0, 0, 1]);
             expect(UA.use(baiduboxvision).baiduBoxOrBdappVersion()).to.deep.equal([1, 4, 0, 10]);
             expect(UA.use(qqApp).baiduBoxOrBdappVersion()).to.deep.equal(null);
             expect(UA.use(weixinApp).baiduBoxOrBdappVersion()).to.deep.equal(null);
@@ -208,6 +221,7 @@ define(['src/index'], function (UA) {
             expect(UA.use(testBdappUa).bdappVersion()).to.deep.equal(null);
             expect(UA.use(btestBaiduboxappUa).bdappVersion()).to.deep.equal(null);
             expect(UA.use(tomasApp).bdappVersion()).to.deep.equal([1, 0, 0, 1]);
+            expect(UA.use(knewsApp).bdappVersion()).to.deep.equal([2, 0, 0, 1]);
             expect(UA.use(baiduboxvision).bdappVersion()).to.deep.equal([1, 4, 0, 10]);
             expect(UA.use(qqApp).bdappVersion()).to.deep.equal(null);
             expect(UA.use(weixinApp).bdappVersion()).to.deep.equal(null);
