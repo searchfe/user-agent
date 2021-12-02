@@ -91,6 +91,10 @@ define(function () {
             isTomas: function () {
                 return /tomas/.test(ua);
             },
+            // 是否为趣新热APP，其关联厂商小米白牌，属于半个手百矩阵产品
+            isKnews: function () {
+                return /knews/.test(ua);
+            },
             // 是否为百度关怀版
             isBaiduboxsenior: function () {
                 return /baiduboxsenior/.test(ua);
