@@ -52,6 +52,13 @@ define(function () {
                 var version = result ? result[1].split('.') : null;
                 return version ? version.map(parseFloat) : null;
             },
+            weakBdappVersion: function () {
+                if (!this.isBdapp()) return null;
+                var reg = /bdapp\/[\d+.]+\s\(\w+;\s\w+\)\s\w+\/([\d+.]+)/i;
+                var result = ua.match(reg);
+                var version = result ? result[1].split('.') : null;
+                return version ? version.map(parseFloat) : null;
+            },
             // 简单搜索版本号
             secrVersion: function () {
                 // 非简单浏览器版本返回 0
@@ -85,11 +92,19 @@ define(function () {
             },
             // 按照新UA规范，是否为百度矩阵产品
             isBdapp: function () {
-                return /bdapp/.test(ua);
+                return /bdapp/.test(ua) && !this.isWeak();
+            },
+            // 按照新UA规范，非矩阵产品增加 weak 标记
+            isWeak: function() {
+                return /weak/.test(ua);
             },
             // 是否为百度大字版
             isTomas: function () {
                 return /tomas/.test(ua);
+            },
+            // 是否为趣新热，关联厂商小米白牌，属于半个手百矩阵产品
+            isKnews: function () {
+                return /knews/.test(ua);
             },
             // 是否为百度关怀版
             isBaiduboxsenior: function () {

@@ -13,6 +13,7 @@ interface factory {
     androidVersion(): Array<number>;
     isBaiduboxOrBdapp(): boolean;
     isTomas(): boolean;
+    isKnews(): boolean;
     isBdapp(): boolean;
     isBaiduBox(): boolean;
     isBaiduBoxLite(): boolean;
