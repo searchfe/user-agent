@@ -79,7 +79,7 @@ define(function () {
                 var version = match[1].split('.').map(parseFloat);
                 return version;
             },
-            // 是否为百度端内产品, owner 表示矩阵产品归属方：1表示归属手百、2表示归属手百和厂商
+            // 是否为百度端内产品, owner 表示矩阵产品归属方：1表示归属手百、2表示归属手百和厂商，默认为1
             isBaiduboxOrBdapp: function (owner = 1) {
                 return this.isBaiduBox() || this.isBdapp(owner);
             },
