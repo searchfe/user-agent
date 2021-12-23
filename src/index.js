@@ -41,13 +41,13 @@ define(function () {
                 if (this.isBaiduBox()) {
                     return this.baiduBoxVersion() && this.baiduBoxVersion().length > 0 ? this.baiduBoxVersion() : null;
                 }
-                if (this.isBdapp()) return this.bdappVersion();
+                if (this.isBdapp(2)) return this.bdappVersion();
                 return null;
             },
             // 矩阵产品版本号
             bdappVersion: function () {
-                if (!this.isBdapp()) return null;
-                var reg = /bdapp\/[\d+.]+\s\(\w+;\s\w+\)\s\w+\/([\d+.]+)/i;
+                if (!this.isBdapp(2)) return null;
+                var reg = /bdapp\/[\d+.]+\s\(\w+[;\s\w+]+\)\s\w+\/([\d+.]+)/i;
                 var result = ua.match(reg);
                 var version = result ? result[1].split('.') : null;
                 return version ? version.map(parseFloat) : null;
@@ -79,13 +79,18 @@ define(function () {
                 var version = match[1].split('.').map(parseFloat);
                 return version;
             },
-            // 是否为百度端内产品
-            isBaiduboxOrBdapp: function () {
-                return this.isBaiduBox() || this.isBdapp();
+            // 是否为百度端内产品, owner 表示矩阵产品归属方：1表示归属手百、2表示归属手百和厂商
+            isBaiduboxOrBdapp: function (owner = 1) {
+                return this.isBaiduBox() || this.isBdapp(owner);
             },
-            // 按照新UA规范，是否为百度矩阵产品
-            isBdapp: function () {
-                return /bdapp/.test(ua);
+            // 按照新UA规范，是否为百度矩阵产品, owner 表示矩阵产品归属方：1表示归属手百、2表示归属手百和厂商，默认为1
+            isBdapp: function (owner = 1) {
+                const isBdApp = /bdapp/.test(ua);
+                const isWeak = /weak/.test(ua);
+                if (owner === 1) {
+                    return isBdApp && !isWeak;
+                }
+                return isBdApp;
             },
             // 是否为百度大字版
             isTomas: function () {

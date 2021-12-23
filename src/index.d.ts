@@ -11,10 +11,10 @@ interface factory {
     secrVersion(): Array<number>;
     getChromeVersion(): Array<number>;
     androidVersion(): Array<number>;
-    isBaiduboxOrBdapp(): boolean;
+    isBaiduboxOrBdapp(owner?: number): boolean;
     isTomas(): boolean;
     isKnews(): boolean;
-    isBdapp(): boolean;
+    isBdapp(owner?: number): boolean;
     isBaiduBox(): boolean;
     isBaiduBoxLite(): boolean;
     isBaiduBoxJisu(): boolean;
