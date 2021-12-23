@@ -149,12 +149,12 @@ define(['src/index'], function (UA) {
 
         it('should detect knews is bdapp', function () {
             expect(UA.use(knewsApp).isBdapp()).to.equal(false);
-            expect(UA.use(knewsApp).isBdapp(2)).to.equal(true);
+            expect(UA.use(knewsApp).isBdapp(true)).to.equal(true);
         });
         
         it('should detect knews is baiduboxOrBdapp', function () {
             expect(UA.use(knewsApp).isBaiduboxOrBdapp()).to.equal(false);
-            expect(UA.use(knewsApp).isBaiduboxOrBdapp(2)).to.equal(true);
+            expect(UA.use(knewsApp).isBaiduboxOrBdapp(true)).to.equal(true);
         });
 
         it('should detect baiduboxsenior', function () {
