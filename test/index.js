@@ -32,7 +32,7 @@ define(['src/index'], function (UA) {
     // 关怀版浏览器
     var baiduboxsenior = 'Mozilla/5.0 (Linux; Android 8.1.0; ONEPLUS A5000 Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 bdapp/1.0 (baiduboxsenior; baiduboxsenior) baiduboxsenior/1.0.0.0 (Baidu; P1 8.1.0)';
     // 趣新热 APP 即厂商小米白牌
-    var knewsApp = 'Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.13.0 SP-engine/0.0.0 bdapp/1.0 (knews; knews) knews/2.0.0.1 (Baidu; P1 10) NABar/1.0'
+    var knewsApp = 'Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.13.0 SP-engine/0.0.0 bdapp/1.0 (knews; knews; weak) knews/2.0.0.1 (Baidu; P1 10) NABar/1.0'
     
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -148,11 +148,13 @@ define(['src/index'], function (UA) {
         });
 
         it('should detect knews is bdapp', function () {
-            expect(UA.use(knewsApp).isBdapp()).to.equal(true);
+            expect(UA.use(knewsApp).isBdapp()).to.equal(false);
+            expect(UA.use(knewsApp).isBdapp(true)).to.equal(true);
         });
         
         it('should detect knews is baiduboxOrBdapp', function () {
-            expect(UA.use(knewsApp).isBaiduboxOrBdapp()).to.equal(true);
+            expect(UA.use(knewsApp).isBaiduboxOrBdapp()).to.equal(false);
+            expect(UA.use(knewsApp).isBaiduboxOrBdapp(true)).to.equal(true);
         });
 
         it('should detect baiduboxsenior', function () {

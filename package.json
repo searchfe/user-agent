@@ -1,6 +1,6 @@
 {
   "name": "@searchfe/user-agent",
-  "version": "1.7.0",
+  "version": "1.9.1",
   "description": "AMD package for user-agent detection.",
   "main": "src/index.js",
   "scripts": {
@@ -74,5 +74,6 @@
       ],
       "@semantic-release/github"
     ]
-  }
+  },
+  "amdDependencies": {}
 }
