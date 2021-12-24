@@ -85,7 +85,7 @@ define(function () {
             },
             // 按照新UA规范，是否为百度矩阵产品, includeWeak表示是否包含 weak 标记，默认不包含
             isBdapp: function (includeWeak) {
-                const isBdApp = /bdapp/.test(ua);
+                var isBdApp = /bdapp/.test(ua);
                 if (includeWeak) {
                     return isBdApp;
                 }
