@@ -160,15 +160,15 @@ define(['src/index'], function (UA) {
             expect(UA.use(BDBoxEngine).isBDBoxEngine()).to.equal(true);
         });
 
-        it('should detect BDBoxEngine is isBaiduBox', function () {
+        it('should detect BDBoxEngine is not isBaiduBox', function () {
             expect(UA.use(BDBoxEngine).isBaiduBox()).to.equal(false);
         });
 
-        it('should detect BDBoxEngine is bdapp', function () {
+        it('should detect BDBoxEngine is not bdapp', function () {
             expect(UA.use(BDBoxEngine).isBdapp()).to.equal(false);
         });
         
-        it('should detect BDBoxEngine is baiduboxOrBdapp', function () {
+        it('should detect BDBoxEngine is not baiduboxOrBdapp', function () {
             expect(UA.use(BDBoxEngine).isBaiduboxOrBdapp()).to.equal(false);
         });
 
