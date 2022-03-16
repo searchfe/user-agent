@@ -14,6 +14,7 @@ interface factory {
     isBaiduboxOrBdapp(): boolean;
     isTomas(): boolean;
     isKnews(): boolean;
+    isBDBoxEngine(): boolean;
     isBdapp(): boolean;
     isBaiduBox(): boolean;
     isBaiduBoxLite(): boolean;

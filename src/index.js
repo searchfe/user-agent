@@ -99,6 +99,10 @@ define(function () {
             isBaiduboxsenior: function () {
                 return /baiduboxsenior/.test(ua);
             },
+            // 是否支持搜索 SDK
+            isBDBoxEngine: function () {
+                return /BDBoxEngine/.test(ua);
+            },
             // Browser
             isBaiduBox: function () {
                 return /baiduboxapp/.test(ua);
