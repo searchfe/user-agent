@@ -35,6 +35,7 @@ define(['src/index'], function (UA) {
     var knewsApp = 'Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.13.0 SP-engine/0.0.0 bdapp/1.0 (knews; knews) knews/2.0.0.1 (Baidu; P1 10) NABar/1.0'
     // 搜索 SDK
     var BDBoxEngine = 'Mozilla/5.0 (Linux; U; Android 10; zh-cn; Mi 10 Build/QKQ1.191117.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Mobile Safari/537.36 HeyTapBrowser/7.30.0 BDBoxEngine/1.0.1';
+    var vivo = 'Mozilla/5.0 (Linux; Android 10; V1829A; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36 VivoBrowser/13.7.60.0';
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
@@ -187,6 +188,9 @@ define(['src/index'], function (UA) {
             expect(UA.use(baiduAndroid).isBaiduboxsenior()).to.equal(false);
         });
 
+        it('should detect vivo browser', function () {
+            expect(UA.use(vivo).isVivoBrowser()).to.equal(true);
+        });
     });
 
     describe('version', function () {
@@ -219,6 +223,12 @@ define(['src/index'], function (UA) {
             expect(UA.use(pixel2).androidVersion()).to.deep.equal([8, 0]);
             expect(UA.use(pixel2XL).androidVersion()).to.deep.equal([8, 0, 0]);
             expect(UA.use(qqIOS).androidVersion()).to.deep.equal([]);
+        });
+        it('should get vivo version', function () {
+            expect(UA.use(vivo).vivoBrowserVersion()).to.deep.equal([13, 7, 60, 0]);
+        });
+        it('should not get vivo version', function () {
+            expect(UA.use(ucAndroid).vivoBrowserVersion()).to.deep.equal([]);
         });
     });
     describe('baiduBoxOrbdappVersion', function () {

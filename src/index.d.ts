@@ -11,6 +11,7 @@ interface factory {
     secrVersion(): Array<number>;
     getChromeVersion(): Array<number>;
     androidVersion(): Array<number>;
+    vivoBrowserVersion(): Array<number>;
     isBaiduboxOrBdapp(): boolean;
     isTomas(): boolean;
     isKnews(): boolean;
@@ -39,6 +40,7 @@ interface factory {
     isWKWebview(): boolean;
     isUIWebview(): boolean;
     isXcxApp(): boolean;
+    isVivoBrowser(): boolean;
     use(ua: string): factory
 }
 
