@@ -79,6 +79,14 @@ define(function () {
                 var version = match[1].split('.').map(parseFloat);
                 return version;
             },
+            // 获取vivo浏览器版本
+            vivoBrowserVersion: function () {
+                const match = ua.match(/VivoBrowser\/([0-9.]+)/);
+                if (!match || !match[1]) {
+                    return [];
+                }
+                return match[1].split('.').map(parseFloat);
+            },
             // 是否为百度端内产品
             isBaiduboxOrBdapp: function () {
                 return this.isBaiduBox() || this.isBdapp();
@@ -196,6 +204,9 @@ define(function () {
                 var xcx = window.atob('c3dhbg==');
                 var reg = new RegExp('(' + xcx + '-baiduboxapp|baiduboxapp-' + xcx + ')');
                 return reg.test(ua);
+            },
+            isVivoBrowser: function () {
+                return /VivoBrowser/.test(ua);
             },
             // functionality
             use: factory
