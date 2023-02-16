@@ -81,7 +81,7 @@ define(function () {
             },
             // 获取vivo浏览器版本
             vivoBrowserVersion: function () {
-                const match = ua.match(/VivoBrowser\/([0-9.]+)/);
+                var match = ua.match(/VivoBrowser\/([0-9.]+)/);
                 if (!match || !match[1]) {
                     return [];
                 }
