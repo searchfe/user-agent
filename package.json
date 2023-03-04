@@ -36,7 +36,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "karma": "^2.0.0",
+    "karma": "^6.4.1",
     "karma-chai": "^0.1.0",
     "karma-chai-as-promised": "^0.1.2",
     "karma-chai-sinon": "^0.1.5",
@@ -50,7 +50,7 @@
     "karma-opera-launcher": "^1.0.0",
     "karma-requirejs": "^1.1.0",
     "karma-safari-launcher": "^1.0.0",
-    "mocha": "^3.2.0",
+    "mocha": "^10.2.0",
     "requirejs": "^2.3.5",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.8.0"
