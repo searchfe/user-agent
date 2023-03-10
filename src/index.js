@@ -28,7 +28,7 @@ define(function () {
                 }
                 var version;
                 var oldReg = /([\d+.]+)_(?:diordna|enohpi)_/i;
-                var newReg = /baiduboxapp\/([\d+.]+)/i;
+                var newReg = /baiduboxapp\/([\d+.]+)/;
                 if (oldReg.test(ua)) {
                     version = ua.match(oldReg)[1].split('.').reverse();
                 } else if (newReg.test(ua)) {
