@@ -36,6 +36,8 @@ define(['src/index'], function (UA) {
     // 搜索 SDK
     var BDBoxEngine = 'Mozilla/5.0 (Linux; U; Android 10; zh-cn; Mi 10 Build/QKQ1.191117.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Mobile Safari/537.36 HeyTapBrowser/7.30.0 BDBoxEngine/1.0.1';
     var vivo = 'Mozilla/5.0 (Linux; Android 10; V1829A; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36 VivoBrowser/13.7.60.0';
+    // ipad 手百ua 存在 BaiduBoxApp 及 baiduboxapp
+    var ipadBd = 'Mozilla/5.0 (iPad; CPU OS 12_0_1 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) BaiduBoxApp/12.6.0 Mobile/16A404 Safari/602.1 SP-engine/2.66.0 main%2F1.0 baiduboxapp/13.28.0.10 (Baidu; P2 12.0.1) NABar/1.0 webCore=0x13ab8bb10';
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
@@ -152,7 +154,7 @@ define(['src/index'], function (UA) {
         it('should detect knews is bdapp', function () {
             expect(UA.use(knewsApp).isBdapp()).to.equal(true);
         });
-        
+
         it('should detect knews is baiduboxOrBdapp', function () {
             expect(UA.use(knewsApp).isBaiduboxOrBdapp()).to.equal(true);
         });
@@ -168,7 +170,7 @@ define(['src/index'], function (UA) {
         it('should detect BDBoxEngine is not bdapp', function () {
             expect(UA.use(BDBoxEngine).isBdapp()).to.equal(false);
         });
-        
+
         it('should detect BDBoxEngine is not baiduboxOrBdapp', function () {
             expect(UA.use(BDBoxEngine).isBaiduboxOrBdapp()).to.equal(false);
         });
@@ -197,6 +199,7 @@ define(['src/index'], function (UA) {
         it('should get baiduBox version', function () {
             expect(UA.use(baiduAndroid).baiduBoxVersion()).to.deep.equal([6, 3]);
             expect(UA.use(baiduboxsenior).baiduBoxVersion()).to.deep.equal(0);
+            expect(UA.use(ipadBd).baiduBoxVersion()).to.deep.equal([13, 28, 0, 10]);
         });
         it('should get searchCraft version', function () {
             expect(UA.use(searchCraft).secrVersion()).to.deep.equal([2, 6, 0]);
