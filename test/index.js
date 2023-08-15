@@ -38,6 +38,9 @@ define(['src/index'], function (UA) {
     var vivo = 'Mozilla/5.0 (Linux; Android 10; V1829A; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36 VivoBrowser/13.7.60.0';
     // ipad 手百ua 存在 BaiduBoxApp 及 baiduboxapp
     var ipadBd = 'Mozilla/5.0 (iPad; CPU OS 12_0_1 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) BaiduBoxApp/12.6.0 Mobile/16A404 Safari/602.1 SP-engine/2.66.0 main%2F1.0 baiduboxapp/13.28.0.10 (Baidu; P2 12.0.1) NABar/1.0 webCore=0x13ab8bb10';
+    
+    var bdhonor = 'okhttp/3.11.0 SP-engine/2.73.0 Dalvik/2.1.0 (Linux; U; Android 13; IN2010 Build/RKQ1.211119.001) bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/8.0.1.10 (Baidu; P1 13)';
+    
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
@@ -72,6 +75,12 @@ define(['src/index'], function (UA) {
             expect(UA.use(baiduIOS).baiduBoxVersion()).to.deep.equal([9, 0, 0, 8]);
             expect(UA.use(baiduAndroid).baiduBoxVersion()).to.deep.equal([6, 3]);
         });
+        it('should detect BaiduHonorBrowser version', function () {
+            expect(UA.use(bdhonor).isBaiduBox()).to.equal(true);
+            expect(UA.use(bdhonor).isBaiduHonorBrowser()).to.equal(true);
+            expect(UA.use(bdhonor).baiduBoxVersion()).to.deep.equal([8, 0, 1, 10]);
+        });
+
         it('should detect AppleWebkit version', function () {
             expect(UA.use(safariIOS).appleWebkitVersion()).to.deep.equal([603, 1, 30]);
         });
