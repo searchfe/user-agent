@@ -29,10 +29,13 @@ define(function () {
                 var version;
                 var oldReg = /([\d+.]+)_(?:diordna|enohpi)_/i;
                 var newReg = /baiduboxapp\/([\d+.]+)/;
+                var honorReg = /bdhonorbrowser\/([\d+.]+)/;
                 if (oldReg.test(ua)) {
                     version = ua.match(oldReg)[1].split('.').reverse();
                 } else if (newReg.test(ua)) {
                     version = ua.match(newReg)[1].split('.');
+                } else if (honorReg.test(ua)) {
+                    version = ua.match(honorReg)[1].split('.');
                 }
                 return version ? version.map(parseFloat) : [];
             },
@@ -113,7 +116,10 @@ define(function () {
             },
             // Browser
             isBaiduBox: function () {
-                return /baiduboxapp/.test(ua);
+                return /baiduboxapp/.test(ua) || /bdhonorbrowser/.test(ua);
+            },
+            isBaiduHonorBrowser: function () {
+                return /bdhonorbrowser/.test(ua);
             },
             isBaiduBoxLite: function () {
                 return /lite baiduboxapp/.test(ua);
