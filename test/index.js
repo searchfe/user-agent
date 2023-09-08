@@ -202,6 +202,10 @@ define(['src/index'], function (UA) {
         it('should detect vivo browser', function () {
             expect(UA.use(vivo).isVivoBrowser()).to.equal(true);
         });
+
+        it('should detect oppo browser', function () {
+            expect(UA.use(oppoBrowser).isOppoBrowser()).to.equal(true);
+        });
     });
 
     describe('version', function () {

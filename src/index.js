@@ -180,6 +180,10 @@ define(function () {
             isMZBrowser: function () {
                 return /MZBrowser/i.test(ua);
             },
+            // 是否 oppo 浏览器
+            isOppoBrowser: function () {
+                return /HeyTapBrowser/.test(ua);
+            },
             // 判断是否为iphone手机的safari浏览器
             isSafariBrowser: function () {
                 var uaLower = ua.toLowerCase();
