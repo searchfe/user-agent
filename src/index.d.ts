@@ -37,6 +37,7 @@ interface factory {
     isMiuiBrowser(): boolean;
     isHUAWEIBrowser(): boolean;
     isMZBrowser(): boolean;
+    isOppoBrowser(): boolean;
     isWKWebview(): boolean;
     isUIWebview(): boolean;
     isXcxApp(): boolean;
