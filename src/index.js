@@ -1,5 +1,8 @@
 define(function () {
     function factory (ua) {
+        var honorMap = [
+            [[8, 0, 1, 0], [13, 38, 5, 0]]
+        ];
         var mod = {
             // OS
             isAndroid: function () {
@@ -35,6 +38,28 @@ define(function () {
                 } else if (newReg.test(ua)) {
                     version = ua.match(newReg)[1].split('.');
                 } else if (honorReg.test(ua)) {
+                    version = ua.match(honorReg)[1].split('.');
+                    honorMap.forEach(map => {
+                        if (
+                            version[0] * 10000000 +
+                            version[1] * 100000 +
+                            version[1] * 1000 +
+                            version[1] >=
+                            map[0][0] * 10000000 +
+                            map[0][1] * 100000 +
+                            map[0][2] * 1000 +
+                            map[0][3]
+                        ) {
+                            version = map[1];
+                        }
+                    });
+                }
+                return version ? version.map(parseFloat) : [];
+            },
+            honorVersion: function () {
+                var honorReg = /bdhonorbrowser\/([\d+.]+)/;
+                var version;
+                if (honorReg.test(ua)) {
                     version = ua.match(honorReg)[1].split('.');
                 }
                 return version ? version.map(parseFloat) : [];
