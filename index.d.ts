@@ -7,6 +7,7 @@ interface factory {
     appleWebkitVersion(): Array<number>;
     baiduBoxVersion(): Array<number>;
     baiduBoxOrBdappVersion(): Array<number> | null;
+    honorVersion(): Array<number> | null;
     bdappVersion(): Array<number>| null;
     secrVersion(): Array<number>;
     getChromeVersion(): Array<number>;
@@ -18,6 +19,7 @@ interface factory {
     isBDBoxEngine(): boolean;
     isBdapp(): boolean;
     isBaiduBox(): boolean;
+    isBaiduHonorBrowser(): boolean;
     isBaiduBoxLite(): boolean;
     isBaiduBoxJisu(): boolean;
     isBaiduBoxVision(): boolean;

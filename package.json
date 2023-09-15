@@ -1,8 +1,8 @@
 {
   "name": "@searchfe/user-agent",
-  "version": "1.9.10",
+  "version": "1.9.11",
   "description": "AMD package for user-agent detection.",
-  "main": "src/index.js",
+  "main": "./index.js",
   "scripts": {
     "lint": "eslint src test *.js",
     "coveralls": "karma start --reporters mocha,coverage,coveralls",
@@ -18,7 +18,8 @@
     "url": "https://github.com/searchfe/user-agent/issues"
   },
   "files": [
-    "src/*"
+    "index.js",
+    "index.d.ts"
   ],
   "homepage": "https://github.com/searchfe/user-agent#readme",
   "devDependencies": {
