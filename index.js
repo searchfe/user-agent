@@ -39,7 +39,8 @@ define(function () {
                     version = ua.match(newReg)[1].split('.');
                 } else if (honorReg.test(ua)) {
                     version = ua.match(honorReg)[1].split('.');
-                    honorMap.forEach(map => {
+                    for (var i = 0; i < honorMap.length; i++) {
+                        var map = honorMap[i];
                         if (
                             version[0] * 10000000 +
                             version[1] * 100000 +
@@ -52,7 +53,7 @@ define(function () {
                         ) {
                             version = map[1];
                         }
-                    });
+                    }
                 }
                 return version ? version.map(parseFloat) : [];
             },
