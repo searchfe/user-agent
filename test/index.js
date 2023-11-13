@@ -22,6 +22,7 @@ define(['../index'], function (UA) {
     var HUAWEIMeta10ProQQ = 'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36';
     var HUAWEInova3Wechat = 'Mozilla/5.0 (Linux; Android 8.1; PAR-AL00 Build/HUAWEIPAR-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/044304 Mobile Safari/537.36 MicroMessenger/6.7.3.1360(0x26070333) NetType/WIFI Language/zh_CN Process/tools';
     var HUAWEIMeta9UC = 'Mozilla/5.0 (Linux; U; Android 8.0.0; zh-CN; MHA-AL00 Build/HUAWEIMHA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.1.4.994 Mobile Safari/537.36';
+    var HUAWEIP40SearchCraft = 'Mozilla/5.0 (Linux; Android 10; ANA-AN00 Build/HUAWEIANA-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36 T7/13.41 ChatSearch/1.0 SearchCraft/5.3.0.1 (Baidu; P1 10)';
     var baiduIOSJisu = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E277 info baiduboxapp/3.7.6.12 (Baidu; P2 10.3)';
     var baiduAndroidJisu = 'Mozilla/5.0 (Linux; Android 7.1.1; OS105 Build/NGI77B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 lite baiduboxapp/3.7.5.11 (Baidu; P1 7.1.1)';
     var swanApp = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 swan/2.4.0 swan-baiduboxapp/11.9.0.1 baiduboxapp/11.9.0.1 (Baidu; P2 12.2)';
@@ -130,6 +131,7 @@ define(['../index'], function (UA) {
             expect(UA.use(HUAWEIMeta10ProQQ).isHUAWEIBrowser()).to.equal(false);
             expect(UA.use(HUAWEInova3Wechat).isHUAWEIBrowser()).to.equal(false);
             expect(UA.use(HUAWEIMeta9UC).isHUAWEIBrowser()).to.equal(false);
+            expect(UA.use(HUAWEIP40SearchCraft).isHUAWEIBrowser()).to.equal(false);
         });
         it('should detect MZBrowser', function () {
             expect(UA.use(MEIZUPRO6).isMZBrowser()).to.equal(true);
