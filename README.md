@@ -28,5 +28,5 @@ if (ua.isIOS()) {
 
 - bugfix 例子（自动发 bugfix 版本）：`fix: 修复在 XX 情况下的 XX 问题`。
 - feature 例子（自动发 minor 版本）：`feat: 支持 XX 浏览器的识别`。
-- 维护工作（不发版本）：`feat: 支持 XX 浏览器的识别`。
+- 维护工作（不发版本）：`chore: 修复流水线编译`。
 - 不兼容变更需要包含一段 `BREAKING CHANGES` 的说明，下次发版递增主版本号。
