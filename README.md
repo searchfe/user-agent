@@ -22,6 +22,38 @@ if (ua.isIOS()) {
 }
 ```
 
+## UMD 版本引入
+### Rollup
+
+```javascript
+import path from 'path';
+
+export default {
+    //...
+    plugins: [{
+        resolveId(id) {
+            if (id.startsWith('@searchfe/user-agent')) {
+                return path.resolve(`${yourPath}/@searchfe/user-agent/index.umd.js`);
+            }
+            return null;
+        }
+    }],
+    //...
+}
+```
+
+### Webpack
+```javascript
+module.exports = {
+    //...
+    resolve: {
+        alias: {
+            "@searchfe/user-agent": "@searchfe/user-agent/index.umd.js"
+        }
+    }
+};
+```
+
 ## 贡献
 
 本仓库使用 [semantic release](https://github.com/semantic-release/semantic-release) 自动发布 NPM，因此需要你的 commit 信息符合 [Commitizen](https://github.com/commitizen/cz-cli) 规范。比如：
