@@ -19,6 +19,7 @@
   },
   "files": [
     "index.js",
+    "index.umd.js",
     "index.d.ts"
   ],
   "homepage": "https://github.com/searchfe/user-agent#readme",
