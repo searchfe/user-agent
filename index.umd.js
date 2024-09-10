@@ -1,3 +1,4 @@
+/* globals self */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -13,6 +14,12 @@
     }
 }(typeof self !== 'undefined' ? self : this, function () {
     function factory (ua) {
+        // 鸿蒙系统
+        const hitArkWeb = ua.indexOf('ArkWeb') > -1;
+
+        // 兼容后端ua，接入层将baiduboxapp替换为baiduarkwebapp
+        const hitBaiduBox = ua.indexOf('baiduboxapp') > -1 || ua.indexOf('baiduarkwebapp') > -1;
+
         var honorMap = [
             [[8, 0, 1, 0], [13, 38, 5, 0]]
         ];
@@ -39,7 +46,7 @@
             },
             baiduBoxVersion: function () {
                 // 非手百版本号返回 0
-                if (!this.isBaiduBox()) {
+                if (!this.isBaiduBox() || hitArkWeb) {
                     return 0;
                 }
                 var version;
@@ -153,19 +160,21 @@
             isBDBoxEngine: function () {
                 return /BDBoxEngine/.test(ua);
             },
-            // Browser
+            // 百度app主版和极速版
             isBaiduBox: function () {
-                return /baiduboxapp/.test(ua) || /bdhonorbrowser/.test(ua);
+                return !hitArkWeb && (/baiduboxapp/.test(ua) || /bdhonorbrowser/.test(ua));
             },
             isBaiduHonorBrowser: function () {
                 return /bdhonorbrowser/.test(ua);
             },
+            // 百度极速版
             isBaiduBoxLite: function () {
-                return /lite baiduboxapp/.test(ua);
+                return !hitArkWeb && /(lite|info) baiduboxapp/.test(ua);
             },
+            // 百度极速版(遗留接口)
             // lite 在 iOS 的标识为 info baiduboxapp
             isBaiduBoxJisu: function () {
-                return (mod.isAndroid() && /lite baiduboxapp/.test(ua)) || (mod.isIOS() && /info baiduboxapp/.test(ua));
+                return mod.isBaiduBoxLite();
             },
             // 百度app视频版
             isBaiduBoxVision: function () {
@@ -256,6 +265,22 @@
             },
             isVivoBrowser: function () {
                 return /VivoBrowser/.test(ua);
+            },
+            isArkBrowser: function () {
+                return hitArkWeb && !hitBaiduBox;
+            },
+            isBaiduBoxOnArk: function () {
+                return hitArkWeb && hitBaiduBox;
+            },
+            baiduBoxVersionOnArk: function () {
+                if (hitArkWeb) {
+                    var newReg = /baiduboxapp\/([\d.]+)/;
+                    var result = ua.replace(/baiduarkwebapp/g, 'baiduboxapp').match(newReg);
+                    if (result && result[1]) {
+                        return result[1].split('.').map(parseFloat);
+                    }
+                }
+                return 0;
             },
             // functionality
             use: factory

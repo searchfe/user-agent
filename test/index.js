@@ -33,17 +33,20 @@ define(['../index'], function (UA) {
     // 关怀版浏览器
     var baiduboxsenior = 'Mozilla/5.0 (Linux; Android 8.1.0; ONEPLUS A5000 Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/63.0.3239.83 Mobile Safari/537.36 T7/10.13 bdapp/1.0 (baiduboxsenior; baiduboxsenior) baiduboxsenior/1.0.0.0 (Baidu; P1 8.1.0)';
     // 趣新热 APP 即厂商小米白牌
-    var knewsApp = 'Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.13.0 SP-engine/0.0.0 bdapp/1.0 (knews; knews) knews/2.0.0.1 (Baidu; P1 10) NABar/1.0'
+    var knewsApp = 'Mozilla/5.0 (Linux; Android 10; TAS-AN00 Build/HUAWEITAS-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.13.0 SP-engine/0.0.0 bdapp/1.0 (knews; knews) knews/2.0.0.1 (Baidu; P1 10) NABar/1.0';
     // 搜索 SDK
     var BDBoxEngine = 'Mozilla/5.0 (Linux; U; Android 10; zh-cn; Mi 10 Build/QKQ1.191117.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Mobile Safari/537.36 HeyTapBrowser/7.30.0 BDBoxEngine/1.0.1';
     var vivo = 'Mozilla/5.0 (Linux; Android 10; V1829A; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36 VivoBrowser/13.7.60.0';
     // ipad 手百ua 存在 BaiduBoxApp 及 baiduboxapp
     var ipadBd = 'Mozilla/5.0 (iPad; CPU OS 12_0_1 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) BaiduBoxApp/12.6.0 Mobile/16A404 Safari/602.1 SP-engine/2.66.0 main%2F1.0 baiduboxapp/13.28.0.10 (Baidu; P2 12.0.1) NABar/1.0 webCore=0x13ab8bb10';
+    // 鸿蒙浏览器
+    var arkBrowser = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36  ArkWeb/4.1.6.1 Mobile';
+    // 鸿蒙百度app
+    var baiduboxOnArk = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36  ArkWeb/4.1.6.1 Mobile bdapp/1.0 (baiduboxapp; baiduboxapp) baiduboxapp/13.64.0.0 (Baidu; P5 5.0.0.25)';
 
     var bdhonor = 'okhttp/3.11.0 SP-engine/2.73.0 Dalvik/2.1.0 (Linux; U; Android 13; IN2010 Build/RKQ1.211119.001) bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/8.0.1.10 (Baidu; P1 13)';
     var bdhonor2 = 'okhttp/3.11.0 SP-engine/2.73.0 Dalvik/2.1.0 (Linux; U; Android 13; IN2010 Build/RKQ1.211119.001) bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/8.0.2.13 (Baidu; P1 13)';
     var bdhonor3 = 'okhttp/3.11.0 SP-engine/2.73.0 Dalvik/2.1.0 (Linux; U; Android 13; IN2010 Build/RKQ1.211119.001) bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/9.0.0.2 (Baidu; P1 13)';
-
 
     describe('UA', function () {
         it('should detect chrome', function () {
@@ -214,6 +217,15 @@ define(['../index'], function (UA) {
         it('should detect oppo browser', function () {
             expect(UA.use(oppoBrowser).isOppoBrowser()).to.equal(true);
         });
+
+        it('should detect arkweb browser', function () {
+            expect(UA.use(arkBrowser).isArkBrowser()).to.equal(true);
+        });
+
+        it('should detect arkweb baibubox', function () {
+            expect(UA.use(baiduboxOnArk).isBaiduBox()).to.equal(false);
+            expect(UA.use(baiduboxOnArk).isBaiduBoxOnArk()).to.equal(true);
+        });
     });
 
     describe('version', function () {
@@ -253,6 +265,14 @@ define(['../index'], function (UA) {
         });
         it('should not get vivo version', function () {
             expect(UA.use(ucAndroid).vivoBrowserVersion()).to.deep.equal([]);
+        });
+        it('should not get baiduBox version on arkweb', function () {
+            expect(UA.use(baiduboxOnArk).baiduBoxVersion()).to.deep.equal(0);
+        });
+        it('should get baiduBox version on arkweb', function () {
+            expect(UA.use(arkBrowser).baiduBoxVersionOnArk()).to.deep.equal(0);
+            expect(UA.use(baiduAndroid).baiduBoxVersionOnArk()).to.deep.equal(0);
+            expect(UA.use(baiduboxOnArk).baiduBoxVersionOnArk()).to.deep.equal([13, 64, 0, 0]);
         });
     });
     describe('baiduBoxOrbdappVersion', function () {

@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/searchfe/user-agent.svg?branch=master)](https://travis-ci.org/searchfe/user-agent)
 [![Coverage Status](https://coveralls.io/repos/github/searchfe/user-agent/badge.svg?branch=master)](https://coveralls.io/github/searchfe/user-agent?branch=master)
 
-这是一个简单的 AMD 格式的 User Agent 检测工具。
+这是一个 User Agent 检测工具。
 
 ## 安装
 
@@ -60,5 +60,5 @@ module.exports = {
 
 - bugfix 例子（自动发 bugfix 版本）：`fix: 修复在 XX 情况下的 XX 问题`。
 - feature 例子（自动发 minor 版本）：`feat: 支持 XX 浏览器的识别`。
-- 维护工作（不发版本）：`feat: 支持 XX 浏览器的识别`。
+- 维护工作（不发版本）：`chore: 支持 XX 浏览器的识别`。
 - 不兼容变更需要包含一段 `BREAKING CHANGES` 的说明，下次发版递增主版本号。
