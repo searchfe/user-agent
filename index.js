@@ -26,7 +26,7 @@ define(function () {
             },
             baiduBoxVersion: function () {
                 // 非手百版本号返回 0
-                if (!this.isBaiduBox()) {
+                if (!this.isBaiduBox() || mod.isArkWeb()) {
                     return 0;
                 }
                 var version;
@@ -140,19 +140,21 @@ define(function () {
             isBDBoxEngine: function () {
                 return /BDBoxEngine/.test(ua);
             },
-            // Browser
+            // 百度app主版和极速版
             isBaiduBox: function () {
-                return /baiduboxapp/.test(ua) || /bdhonorbrowser/.test(ua);
+                return !mod.isArkWeb() && (/baiduboxapp/.test(ua) || /bdhonorbrowser/.test(ua));
             },
             isBaiduHonorBrowser: function () {
                 return /bdhonorbrowser/.test(ua);
             },
+            // 百度极速版
             isBaiduBoxLite: function () {
-                return /lite baiduboxapp/.test(ua);
+                return !mod.isArkWeb() && /(lite|info) baiduboxapp/.test(ua);
             },
+            // 百度极速版(遗留接口)
             // lite 在 iOS 的标识为 info baiduboxapp
             isBaiduBoxJisu: function () {
-                return (mod.isAndroid() && /lite baiduboxapp/.test(ua)) || (mod.isIOS() && /info baiduboxapp/.test(ua));
+                return mod.isBaiduBoxLite();
             },
             // 百度app视频版
             isBaiduBoxVision: function () {
@@ -244,6 +246,32 @@ define(function () {
             isVivoBrowser: function () {
                 return /VivoBrowser/.test(ua);
             },
+
+            // 鸿蒙系统
+            isArkWeb: function () {
+                return ua.indexOf('ArkWeb') > -1;
+            },
+            // 鸿蒙浏览器
+            isArkBrowser: function () {
+                return mod.isArkWeb() && !mod.isBaiduBoxOnArk();
+            },
+            // 鸿蒙百度app主版和极速版
+            isBaiduBoxOnArk: function () {
+                // 兼容后端ua，接入层将baiduboxapp替换为baiduarkwebapp
+                return mod.isArkWeb() && (ua.indexOf('baiduboxapp') > -1 || ua.indexOf('baiduarkwebapp') > -1);
+            },
+            // 鸿蒙百度app主版和极速版的版本号
+            baiduBoxVersionOnArk: function () {
+                if (mod.isArkWeb()) {
+                    var newReg = /baiduboxapp\/([\d.]+)/;
+                    var result = ua.replace(/baiduarkwebapp/g, 'baiduboxapp').match(newReg);
+                    if (result && result[1]) {
+                        return result[1].split('.').map(parseFloat);
+                    }
+                }
+                return 0;
+            },
+
             // functionality
             use: factory
         };
