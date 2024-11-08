@@ -7,6 +7,8 @@ interface factory {
     appleWebkitVersion(): Array<number>;
     baiduBoxVersion(): Array<number> | number;
     baiduBoxVersionOnArk(): Array<number> | number;
+    baiduMainVersionOnArk(): Array<number> | number;
+    baiduLiteVersionOnArk(): Array<number> | number;
     baiduBoxOrBdappVersion(): Array<number> | null;
     honorVersion(): Array<number> | null;
     bdappVersion(): Array<number>| null;
@@ -47,6 +49,8 @@ interface factory {
     isVivoBrowser(): boolean;
     isArkBrowser(): boolean;
     isBaiduBoxOnArk(): boolean;
+    isBaiduMainOnArk(): boolean;
+    isBaiduLiteOnArk(): boolean;
     use(ua: string): factory
 }
 

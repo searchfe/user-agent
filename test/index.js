@@ -43,6 +43,8 @@ define(['../index'], function (UA) {
     var arkBrowser = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36  ArkWeb/4.1.6.1 Mobile';
     // 鸿蒙百度app
     var baiduboxOnArk = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36  ArkWeb/4.1.6.1 Mobile bdapp/1.0 (baiduboxapp; baiduboxapp) baiduboxapp/13.64.0.0 (Baidu; P5 5.0.0.25)';
+    // 鸿蒙百度极速版
+    var baiduLiteOnArk = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36  ArkWeb/4.1.6.1 Mobile bdapp/1.0 (baiduboxlite; baiduboxlite) baiduboxlite/6.0.0.0 (Baidu; P5 5.0.0.25)';
 
     var bdhonor = 'okhttp/3.11.0 SP-engine/2.73.0 Dalvik/2.1.0 (Linux; U; Android 13; IN2010 Build/RKQ1.211119.001) bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/8.0.1.10 (Baidu; P1 13)';
     var bdhonor2 = 'okhttp/3.11.0 SP-engine/2.73.0 Dalvik/2.1.0 (Linux; U; Android 13; IN2010 Build/RKQ1.211119.001) bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/8.0.2.13 (Baidu; P1 13)';
@@ -225,6 +227,11 @@ define(['../index'], function (UA) {
         it('should detect arkweb baibubox', function () {
             expect(UA.use(baiduboxOnArk).isBaiduBox()).to.equal(false);
             expect(UA.use(baiduboxOnArk).isBaiduBoxOnArk()).to.equal(true);
+            expect(UA.use(baiduboxOnArk).isBaiduMainOnArk()).to.equal(true);
+            expect(UA.use(baiduLiteOnArk).isBaiduBox()).to.equal(false);
+            expect(UA.use(baiduLiteOnArk).isBaiduBoxOnArk()).to.equal(true);
+            expect(UA.use(baiduLiteOnArk).isBaiduMainOnArk()).to.equal(false);
+            expect(UA.use(baiduLiteOnArk).isBaiduLiteOnArk()).to.equal(true);
         });
     });
 
@@ -273,6 +280,10 @@ define(['../index'], function (UA) {
             expect(UA.use(arkBrowser).baiduBoxVersionOnArk()).to.deep.equal(0);
             expect(UA.use(baiduAndroid).baiduBoxVersionOnArk()).to.deep.equal(0);
             expect(UA.use(baiduboxOnArk).baiduBoxVersionOnArk()).to.deep.equal([13, 64, 0, 0]);
+            expect(UA.use(baiduboxOnArk).baiduMainVersionOnArk()).to.deep.equal([13, 64, 0, 0]);
+            expect(UA.use(baiduLiteOnArk).baiduBoxVersionOnArk()).to.deep.equal([6, 0, 0, 0]);
+            expect(UA.use(baiduLiteOnArk).baiduMainVersionOnArk()).to.equal(0);
+            expect(UA.use(baiduLiteOnArk).baiduLiteVersionOnArk()).to.deep.equal([6, 0, 0, 0]);
         });
     });
     describe('baiduBoxOrbdappVersion', function () {

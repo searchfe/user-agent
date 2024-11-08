@@ -1,6 +1,6 @@
 {
   "name": "@searchfe/user-agent",
-  "version": "1.9.14",
+  "version": "1.9.15",
   "description": "AMD package for user-agent detection.",
   "main": "./index.js",
   "scripts": {
