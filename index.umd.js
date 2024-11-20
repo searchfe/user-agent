@@ -265,20 +265,40 @@
             isArkWeb: function () {
                 return ua.indexOf('ArkWeb') > -1;
             },
-            // 鸿蒙浏览器
-            isArkBrowser: function () {
-                return mod.isArkWeb() && !mod.isBaiduBoxOnArk();
-            },
             // 鸿蒙百度app主版和极速版
             isBaiduBoxOnArk: function () {
+                return mod.isBaiduMainOnArk() || mod.isBaiduLiteOnArk();
+            },
+            // 鸿蒙百度app主版
+            isBaiduMainOnArk: function () {
                 // 兼容后端ua，接入层将baiduboxapp替换为baiduarkwebapp
-                return mod.isArkWeb() && (ua.indexOf('baiduboxapp') > -1 || ua.indexOf('baiduarkwebapp') > -1);
+                return /ArkWeb.* (baiduboxapp|baiduarkwebapp)/i.test(ua);
+            },
+            // 鸿蒙百度极速版
+            isBaiduLiteOnArk: function () {
+                // 兼容后端ua，接入层将baiduboxlite替换为baiduarkweblite
+                return /ArkWeb.* (baiduboxlite|baiduarkweblite)/i.test(ua);
             },
             // 鸿蒙百度app主版和极速版的版本号
             baiduBoxVersionOnArk: function () {
+                return mod.baiduMainVersionOnArk() || mod.baiduLiteVersionOnArk();
+            },
+            // 鸿蒙百度app的版本号
+            baiduMainVersionOnArk: function () {
                 if (mod.isArkWeb()) {
                     var newReg = /baiduboxapp\/([\d.]+)/;
                     var result = ua.replace(/baiduarkwebapp/g, 'baiduboxapp').match(newReg);
+                    if (result && result[1]) {
+                        return result[1].split('.').map(parseFloat);
+                    }
+                }
+                return 0;
+            },
+            // 鸿蒙百度极速版的版本号
+            baiduLiteVersionOnArk: function () {
+                if (mod.isArkWeb()) {
+                    var newReg = /baiduboxlite\/([\d.]+)/;
+                    var result = ua.replace(/baiduarkweblite/g, 'baiduboxlite').match(newReg);
                     if (result && result[1]) {
                         return result[1].split('.').map(parseFloat);
                     }
@@ -289,12 +309,15 @@
             // functionality
             use: factory
         };
+
         // 需要屏蔽swan关键字用base64解码代替
-        mod[window.atob('aXNTd2FuQXBw')] = function () {
+        // 兼容非浏览器环境
+        typeof window === 'object' && (mod[window.atob('aXNTd2FuQXBw')] = function () {
             var xcx = window.atob('c3dhbg==');
             var reg = new RegExp('(' + xcx + '-baiduboxapp|baiduboxapp-' + xcx + ')');
             return reg.test(ua);
-        };
+        });
+
         return mod;
     }
 
