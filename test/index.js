@@ -50,6 +50,9 @@ define(['../index'], function (UA) {
     var bdhonor2 = 'okhttp/3.11.0 SP-engine/2.73.0 Dalvik/2.1.0 (Linux; U; Android 13; IN2010 Build/RKQ1.211119.001) bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/8.0.2.13 (Baidu; P1 13)';
     var bdhonor3 = 'okhttp/3.11.0 SP-engine/2.73.0 Dalvik/2.1.0 (Linux; U; Android 13; IN2010 Build/RKQ1.211119.001) bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/9.0.0.2 (Baidu; P1 13)';
 
+    // 夸克浏览器
+    var quarkBrowser = 'Mozilla/5.0 (Linux; U; Android 12; zh-Hans-CN; BRE-AL80 Build/HUAWEIBRE-AL80) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/123.0.6312.80 Quark/7.16.0.905 Mobile Safari/537.36';
+
     describe('UA', function () {
         it('should detect chrome', function () {
             expect(UA.isChromeDesktop()).to.equal(true);
@@ -233,6 +236,11 @@ define(['../index'], function (UA) {
             expect(UA.use(baiduLiteOnArk).isBaiduMainOnArk()).to.equal(false);
             expect(UA.use(baiduLiteOnArk).isBaiduLiteOnArk()).to.equal(true);
         });
+
+        it('should detect quark browser', function () {
+            expect(UA.use(ucAndroid).isQuarkBrowser()).to.equal(false);
+            expect(UA.use(quarkBrowser).isQuarkBrowser()).to.equal(true);
+        })
     });
 
     describe('version', function () {

@@ -51,6 +51,7 @@ interface factory {
     isBaiduBoxOnArk(): boolean;
     isBaiduMainOnArk(): boolean;
     isBaiduLiteOnArk(): boolean;
+    isQuarkBrowser(): boolean;
     use(ua: string): factory
 }
 

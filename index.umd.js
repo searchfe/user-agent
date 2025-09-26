@@ -306,6 +306,11 @@
                 return 0;
             },
 
+            // 夸克浏览器
+            isQuarkBrowser: function () {
+                return /Quark/.test(ua);
+            },
+
             // functionality
             use: factory
         };
