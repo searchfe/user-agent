@@ -190,6 +190,10 @@
             isQQBrowser: function () {
                 return /QQBrowser/.test(ua) && !(/QQ\//.test(ua) || /MicroMessenger/.test(ua));
             },
+            // isQQHDBrowser 会判断是否 QQ HD 浏览器
+            isQQHDBrowser: function () {
+                return /MQBHD/.test(ua);
+            },
             isBaiduBrowser: function () {
                 return /baidubrowser/.test(ua);
             },

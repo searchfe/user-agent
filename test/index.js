@@ -2,6 +2,7 @@ define(['../index'], function (UA) {
     var qqAndroid = 'Mozilla/5.0 (Linux; U; Android 4.4.4; zh-cn; HUAWEI C8818 Build/HuaweiC8818) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 MQQBrowser/5.8 Mobile Safari/537.36';
     var qqIOS = 'Mozilla/5.0 (iPhone 84; CPU iPhone OS 10_3_3 like Mac OS X) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.0 MQQBrowser/7.8.0 Mobile/14G60 Safari/8536.25 MttCustomUA/2 QBWebViewType/1 WKType/1';
     var ucAndroid = 'Mozilla/5.0 (Linux; U; Android 7.0; zh-CN; ZUK Z2121 Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 UCBrowser/11.6.8.952 Mobile Safari/537.36';
+    var qqHDBrowser = 'Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MQBHD/6.9.1 Safari/537.22';
     var safariIOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1';
     var ucIOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X; zh-CN) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/16A5288q UCBrowser/12.0.3.1077 Mobile  AliApp(TUnionSDK/0.1.20.3)';
     var baiduIOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13F69 baiduboxapp/0_8.0.0.9_enohpi_6311_046/2.3.9_2C2%255enohPi/1000306f/C4FF069AC425606E29ACA3E490065B7C5DFD70645OCEANNARPH/1';
@@ -65,6 +66,10 @@ define(['../index'], function (UA) {
             expect(UA.use(qqIOS).isQQ()).to.equal(true);
             expect(UA.use(qqAndroid).isQQBrowser()).to.equal(true);
             expect(UA.use(qqIOS).isQQBrowser()).to.equal(true);
+        });
+        it('should detect QQ HD browser', function () {
+            expect(UA.use(qqAndroid).isQQHDBrowser()).to.equal(false);
+            expect(UA.use(qqHDBrowser).isQQHDBrowser()).to.equal(true);
         });
         it('should detect QQ app', function () {
             expect(UA.use(qqApp).isQQApp()).to.equal(true);
