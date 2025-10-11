@@ -30,6 +30,7 @@ interface factory {
     isQQApp(): boolean;
     isWeixinApp(): boolean;
     isQQBrowser(): boolean;
+    isQQHDBrowser(): boolean;
     isBaiduBrowser(): boolean;
     isSearchCraft(): boolean;
     isUC(): boolean;
